@@ -1,0 +1,43 @@
+.wheel {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  animation: spin 18s linear infinite;
+  will-change: transform;
+}
+
+.ringStatic {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: rotate(var(--angle)) translate(140px) rotate(calc(var(--angle) * -1));
+  transform-origin: center;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.logo:hover {
+  transform: rotate(var(--angle)) translate(140px) rotate(calc(var(--angle) * -1)) scale(1.06);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

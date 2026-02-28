@@ -1,0 +1,30 @@
+.marquee {
+  --marquee-duration: 22s;
+  position: relative;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration) linear infinite;
+  will-change: transform;
+}
+
+.trackStatic {
+  display: flex;
+  width: max-content;
+}
+
+.fadeEdges {
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
