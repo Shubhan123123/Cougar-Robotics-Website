@@ -8,7 +8,7 @@ import { useDevFlags } from "@/lib/SafeDevContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const useParallax = (targetRef: RefObject<HTMLElement>, distance = 120) => {
+export const useParallax = (targetRef: RefObject<HTMLElement | null>, distance = 120) => {
   const reducedMotion = usePrefersReducedMotion();
   const { enableScroll, enableMotion } = useDevFlags();
 

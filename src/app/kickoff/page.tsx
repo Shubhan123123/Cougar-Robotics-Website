@@ -38,23 +38,23 @@ export default function KickoffPage() {
 
       <section className="mx-auto w-full max-w-6xl px-6 py-16 space-y-10">
         <PdfViewer
-          src="/pdfs/BUMPERS-2026.pdf"
+          src="/pdf/BUMPERS-2026.pdf"
           title="Bumpers 2026"
         />
         <PdfViewer
-          src="/pdfs/1403-Strategy-Kickoff-Alliance-Selection-Workshop.pdf"
+          src="/pdf/1403-Strategy-Kickoff-Alliance-Selection-Workshop.pdf"
           title="1403 Strategy Kickoff: Alliance Selection Workshop"
         />
         <PdfViewer
-          src="/pdfs/Tips-Tricks-to-help-Improve-Reliability-Performance-of-your-Robot-Team.pdf"
+          src="/pdf/Tips-Tricks-to-help-Improve-Reliability-Performance-of-your-Robot-Team.pdf"
           title="Tips & Tricks: Improve Reliability and Performance"
         />
         <PdfViewer
-          src="/pdfs/Sensors-Motors-2026.pdf"
+          src="/pdf/Sensors-Motors-2026.pdf"
           title="Sensors & Motors 2026"
         />
         <PdfViewer
-          src="/pdfs/Inventor-Workshop-2026.pdf"
+          src="/pdf/Inventor-Workshop-2026.pdf"
           title="Inventor Workshop 2026"
         />
       </section>

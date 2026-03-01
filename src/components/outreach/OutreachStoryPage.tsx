@@ -53,7 +53,7 @@ const fadeUp = {
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" },
+    transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" as const },
   }),
 };
 
@@ -155,7 +155,7 @@ const Timeline = ({ steps }: { steps: OutreachTimelineStep[] }) => {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-15% 0px" }}
-              transition={{ duration: reducedMotion ? 0 : 0.45, ease: "easeOut" }}
+              transition={{ duration: reducedMotion ? 0 : 0.45, ease: "easeOut" as const }}
               aria-expanded={isActive}
             >
               <div className="flex items-center justify-between">
@@ -194,7 +194,7 @@ const Gallery = ({ items }: { items: OutreachGalleryItem[] }) => {
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px" }}
-            transition={{ duration: reducedMotion ? 0 : 0.45, ease: "easeOut" }}
+            transition={{ duration: reducedMotion ? 0 : 0.45, ease: "easeOut" as const }}
             aria-label={`Open image: ${item.caption}`}
           >
             <div className="relative h-44">
@@ -254,7 +254,7 @@ const InsightCard = ({ title, items }: { title: string; items: string[] }) => {
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-15% 0px" }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
+      transition={{ duration: 0.45, ease: "easeOut" as const }}
     >
       <div className="absolute inset-0 rounded-3xl border border-black/10 bg-[linear-gradient(135deg,rgba(193,163,98,0.18),rgba(34,197,94,0.12))]" />
       <div className="relative space-y-4">
@@ -351,7 +351,7 @@ const OutreachStoryPage = ({ content }: { content: OutreachStoryContent }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: reducedMotion ? 0 : 0.5, ease: "easeOut" }}
+            transition={{ duration: reducedMotion ? 0 : 0.5, ease: "easeOut" as const }}
           >
             <Image
               src={content.heroImage}

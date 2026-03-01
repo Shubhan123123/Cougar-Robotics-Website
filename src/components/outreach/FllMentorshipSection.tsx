@@ -24,7 +24,7 @@ const highlights = [
 const paragraphReveal = {
   initial: { opacity: 0, y: 12 },
   whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" },
+  transition: { duration: 0.6, ease: "easeOut" as const },
   viewport: { once: true, amount: 0.35 },
 };
 
@@ -147,7 +147,7 @@ const FllMentorshipSectionMotion = () => {
               key={item}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: "easeOut" as const }}
               viewport={{ once: true, amount: 0.35 }}
               className="rounded-3xl border border-black/10 bg-white/80 p-6 shadow-[0_20px_70px_-60px_rgba(0,0,0,0.6)]"
             >

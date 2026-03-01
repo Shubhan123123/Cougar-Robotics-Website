@@ -18,7 +18,7 @@ type ScrollEffectOptions = {
 };
 
 export const useScrollEffects = (
-  sectionRef: React.RefObject<HTMLElement>,
+  sectionRef: React.RefObject<HTMLElement | null>,
   {
     scrub = false,
     pin = false,
