@@ -1,0 +1,426 @@
+.page {
+  position: relative;
+  overflow: clip;
+  min-height: 100vh;
+  background:
+    radial-gradient(120% 85% at 50% -10%, rgba(96, 156, 255, 0.12), transparent 58%),
+    radial-gradient(85% 70% at 10% 0%, rgba(79, 140, 255, 0.1), transparent 62%),
+    radial-gradient(75% 65% at 100% 8%, rgba(13, 175, 194, 0.12), transparent 55%),
+    linear-gradient(180deg, #05080d 0%, #090f1a 38%, #0a111f 100%);
+  color: #e8edf7;
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.08;
+  mix-blend-mode: soft-light;
+}
+
+.hero,
+.photoboardSection,
+.groupSection,
+.ending {
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  min-height: clamp(620px, 86vh, 860px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(6rem, 11vw, 9rem) 1.5rem clamp(4rem, 8vw, 7rem);
+}
+
+.heroInner {
+  position: relative;
+  width: min(1120px, 100%);
+  text-align: center;
+}
+
+.heroKicker {
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  font-size: clamp(0.68rem, 1.4vw, 0.82rem);
+  color: rgba(206, 228, 255, 0.78);
+}
+
+.heroTitle {
+  margin: 0;
+  display: grid;
+  gap: 0.2em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 0.95;
+  font-size: clamp(3rem, 10vw, 8rem);
+  color: #f5fbff;
+  text-shadow:
+    0 0 15px rgba(120, 184, 255, 0.5),
+    0 0 42px rgba(85, 164, 255, 0.3);
+}
+
+.heroWord {
+  display: block;
+}
+
+.heroLead {
+  width: min(760px, 100%);
+  margin: 1.8rem auto 0;
+  line-height: 1.75;
+  font-size: clamp(0.95rem, 2vw, 1.18rem);
+  color: rgba(225, 236, 255, 0.86);
+}
+
+.lightField {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.heroLights {
+  inset: -8% -8% auto;
+  height: 96%;
+}
+
+.beam {
+  position: absolute;
+  left: -12%;
+  width: 124%;
+  height: clamp(70px, 12vw, 180px);
+  border-radius: 999px;
+  filter: blur(28px);
+  opacity: 0.34;
+  transform: translate3d(0, 0, 0);
+  animation: beamDrift 14s ease-in-out infinite;
+}
+
+.robotBeam {
+  background:
+    linear-gradient(90deg, rgba(120, 170, 255, 0), rgba(119, 191, 255, 0.6) 22%, rgba(140, 226, 255, 0.95) 48%, rgba(119, 191, 255, 0.54) 76%, rgba(120, 170, 255, 0));
+}
+
+.logisticsBeam {
+  background:
+    linear-gradient(90deg, rgba(86, 220, 255, 0), rgba(138, 203, 255, 0.52) 28%, rgba(103, 239, 232, 0.88) 50%, rgba(138, 203, 255, 0.5) 72%, rgba(86, 220, 255, 0));
+}
+
+.beamOne {
+  top: 18%;
+  animation-delay: -2.2s;
+}
+
+.beamTwo {
+  top: 44%;
+  height: clamp(54px, 8vw, 122px);
+  opacity: 0.26;
+  animation-duration: 18s;
+  animation-delay: -8s;
+}
+
+.beamThree {
+  top: 66%;
+  height: clamp(46px, 7vw, 92px);
+  opacity: 0.22;
+  filter: blur(36px);
+  animation-duration: 21s;
+  animation-delay: -4s;
+}
+
+.pulse {
+  position: absolute;
+  inset: 12% 20% auto;
+  height: 54%;
+  border-radius: 999px;
+  filter: blur(48px);
+  opacity: 0.14;
+  animation: pulseBloom 9s ease-in-out infinite;
+}
+
+.photoboardSection {
+  padding: 0 1.25rem clamp(4.8rem, 9vw, 8rem);
+}
+
+.photoboardShell {
+  position: relative;
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  border-radius: 30px;
+  border: 1px solid rgba(163, 205, 255, 0.36);
+  background:
+    linear-gradient(150deg, rgba(15, 26, 44, 0.84), rgba(8, 15, 30, 0.7)),
+    radial-gradient(130% 190% at 50% -25%, rgba(138, 208, 255, 0.18), transparent 66%);
+  box-shadow:
+    0 55px 120px -78px rgba(0, 0, 0, 0.9),
+    0 0 46px rgba(128, 194, 255, 0.2);
+  padding: 1.2rem;
+}
+
+.photoboardHeader {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0.9rem;
+}
+
+.photoboardLabel {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.7rem;
+  color: rgba(193, 223, 255, 0.86);
+}
+
+.photoboardFrame {
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(171, 214, 255, 0.4);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 34px rgba(101, 186, 255, 0.16);
+}
+
+.photoboardImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.groupSection {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 0 1.25rem clamp(4.8rem, 8vw, 7.5rem);
+}
+
+.sectionHeading {
+  position: relative;
+  margin-bottom: 1.6rem;
+  padding: 2.5rem 0 1.1rem;
+}
+
+.headingLights {
+  inset: 0;
+  opacity: 0.72;
+}
+
+.sectionTag {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgba(188, 220, 255, 0.76);
+}
+
+.sectionTitle {
+  position: relative;
+  z-index: 1;
+  margin: 0.35rem 0 0;
+  font-size: clamp(2rem, 4.8vw, 3.75rem);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #f5fbff;
+  text-shadow:
+    0 0 14px rgba(128, 198, 255, 0.45),
+    0 0 34px rgba(111, 185, 255, 0.28);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(167, 206, 255, 0.24);
+  background:
+    radial-gradient(140% 110% at 75% -20%, rgba(115, 182, 255, 0.16), transparent 55%),
+    linear-gradient(160deg, rgba(12, 23, 40, 0.84), rgba(8, 15, 29, 0.76));
+  box-shadow:
+    0 40px 84px -70px rgba(0, 0, 0, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: border-color 260ms ease, box-shadow 260ms ease;
+}
+
+.card:hover {
+  border-color: rgba(195, 222, 255, 0.5);
+  box-shadow:
+    0 44px 92px -66px rgba(0, 0, 0, 1),
+    0 0 0 1px rgba(176, 213, 255, 0.2) inset,
+    0 0 42px rgba(126, 186, 255, 0.18);
+}
+
+.cardGlow {
+  position: absolute;
+  inset: -35% -10% auto;
+  height: 62%;
+  border-radius: 999px;
+  background: radial-gradient(ellipse at center, rgba(148, 214, 255, 0.28), rgba(120, 177, 255, 0));
+  filter: blur(24px);
+  opacity: 0.66;
+  pointer-events: none;
+}
+
+.imageCard .imageWrap {
+  position: relative;
+  overflow: hidden;
+  max-height: 330px;
+}
+
+.cardImage {
+  width: 100%;
+  height: clamp(230px, 34vw, 340px);
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 420ms ease;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.08);
+}
+
+.imageScrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(6, 13, 26, 0.05), rgba(5, 11, 20, 0.6) 78%),
+    linear-gradient(120deg, rgba(100, 180, 255, 0.16), transparent 35%);
+}
+
+.textCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.3rem 1.3rem 0;
+}
+
+.textCardBar {
+  display: block;
+  width: 68%;
+  height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(96, 170, 255, 0.8), rgba(104, 245, 236, 0.55), rgba(96, 170, 255, 0));
+  filter: blur(0.4px);
+}
+
+.textCardBadge {
+  font-size: 0.63rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(189, 222, 255, 0.82);
+}
+
+.cardBody {
+  position: relative;
+  z-index: 1;
+  padding: 1.3rem 1.3rem 1.5rem;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f2f8ff;
+  text-shadow: 0 0 13px rgba(133, 199, 255, 0.3);
+}
+
+.cardText {
+  margin: 0.9rem 0 0;
+  line-height: 1.74;
+  font-size: clamp(0.93rem, 1.3vw, 1rem);
+  color: rgba(224, 237, 255, 0.9);
+}
+
+.ending {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 0 1.25rem clamp(4.6rem, 8vw, 7.2rem);
+  text-align: center;
+}
+
+.endingLights {
+  inset: 0;
+  opacity: 0.8;
+}
+
+.endingText {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-top: 3.2rem;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(206, 232, 255, 0.82);
+}
+
+@keyframes beamDrift {
+  0% {
+    transform: translate3d(-2%, -1.2%, 0) scaleX(0.98);
+  }
+  50% {
+    transform: translate3d(1.5%, 1.4%, 0) scaleX(1.01);
+  }
+  100% {
+    transform: translate3d(-2%, -1.2%, 0) scaleX(0.98);
+  }
+}
+
+@keyframes pulseBloom {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 0.23;
+    transform: scale(1.02);
+  }
+}
+
+@media (min-width: 820px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 560px;
+    padding-top: 5.5rem;
+  }
+
+  .heroKicker,
+  .sectionTag,
+  .photoboardLabel {
+    letter-spacing: 0.2em;
+  }
+
+  .cardBody {
+    padding: 1.1rem 1rem 1.2rem;
+  }
+
+  .textCardTop {
+    padding: 1rem 1rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beam,
+  .pulse,
+  .cardImage {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

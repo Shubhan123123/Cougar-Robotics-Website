@@ -6,13 +6,14 @@ import { useScrollEffects } from "@/components/motion/useScrollEffects";
 import type { PageContent } from "@/lib/content";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
+import SubteamsPage from "@/components/pages/SubteamsPage";
 
 type ContentPageProps = {
   content: PageContent;
   slug: string;
 };
 
-const ContentPage = ({ content, slug }: ContentPageProps) => {
+const GenericContentPage = ({ content, slug }: ContentPageProps) => {
   const heroRef = useRef<HTMLElement>(null);
   const chapterRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLElement>(null);
@@ -131,6 +132,14 @@ const ContentPage = ({ content, slug }: ContentPageProps) => {
       ) : null}
     </main>
   );
+};
+
+const ContentPage = ({ content, slug }: ContentPageProps) => {
+  if (slug === "our-team/sub-teams") {
+    return <SubteamsPage />;
+  }
+
+  return <GenericContentPage content={content} slug={slug} />;
 };
 
 export default ContentPage;
