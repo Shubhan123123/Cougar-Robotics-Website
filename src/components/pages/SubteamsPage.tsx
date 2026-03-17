@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useMemo, useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import type { Variants } from "framer-motion";
 import styles from "./SubteamsPage.module.css";
 
 type SubteamEntry = {
@@ -187,7 +188,7 @@ export default function SubteamsPage() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 100]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.85, 1], [1, 1, reduceMotion ? 1 : 0.4]);
 
-  const heroWordVariant = useMemo(
+  const heroWordVariant = useMemo<Variants>(
     () => ({
       hidden: { opacity: 0, y: reduceMotion ? 0 : 24 },
       show: (i: number) => ({
@@ -196,7 +197,7 @@ export default function SubteamsPage() {
         transition: {
           delay: reduceMotion ? 0 : i * 0.09,
           duration: 0.55,
-          ease: "easeOut",
+          ease: [0.22, 1, 0.36, 1],
         },
       }),
     }),
