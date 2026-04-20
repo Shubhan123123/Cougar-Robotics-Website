@@ -35,7 +35,7 @@ const sectionReveal = (reducedMotion: boolean, delay = 0) => ({
 });
 
 export default function WrittenResourcesPage() {
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useReducedMotion() ?? false;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(180deg,#fbfcf8_0%,#f7faf3_40%,#ffffff_100%)] text-black">

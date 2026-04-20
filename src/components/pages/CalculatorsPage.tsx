@@ -18,7 +18,7 @@ const sectionReveal = (reducedMotion: boolean, delay = 0) => ({
 });
 
 export default function CalculatorsPage() {
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useReducedMotion() ?? false;
   const [viewMode, setViewMode] = useState<ViewMode>("overview");
 
   return (

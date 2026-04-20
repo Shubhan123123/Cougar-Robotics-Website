@@ -64,7 +64,7 @@ const sectionReveal = (reducedMotion: boolean, delay = 0) => ({
 });
 
 export default function VideosPage() {
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useReducedMotion() ?? false;
   const [activeFilter, setActiveFilter] = useState<Filter>("all");
 
   const filteredVideos = useMemo(() => {

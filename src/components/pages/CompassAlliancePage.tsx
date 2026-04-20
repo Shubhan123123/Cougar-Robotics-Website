@@ -119,7 +119,7 @@ const sectionReveal = (reducedMotion: boolean, delay = 0) => ({
 });
 
 const CountUpStat = ({ stat, index }: { stat: StatItem; index: number }) => {
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useReducedMotion() ?? false;
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-20% 0px" });
   const [display, setDisplay] = useState(0);
@@ -171,7 +171,7 @@ const Pill = ({ children }: { children: ReactNode }) => (
 );
 
 const CompassAlliancePage = () => {
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useReducedMotion() ?? false;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(180deg,#fbfcf8_0%,#f8faf3_36%,#ffffff_100%)] text-black">
