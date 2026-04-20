@@ -7,6 +7,16 @@ import type { PageContent } from "@/lib/content";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import SubteamsPage from "@/components/pages/SubteamsPage";
+import LeadershipPage from "@/components/pages/LeadershipPage";
+import LibraryEventsPage from "@/components/pages/LibraryEventsPage";
+import CougarWorkshopsPage from "@/components/pages/CougarWorkshopsPage";
+import SoarSummerProgramsPage from "@/components/pages/SoarSummerProgramsPage";
+import ToiletryDrivePage from "@/components/pages/ToiletryDrivePage";
+import WomenInStemPage from "@/components/pages/WomenInStemPage";
+import HistoryPage from "@/components/pages/HistoryPage";
+import VideosPage from "@/components/pages/VideosPage";
+import WrittenResourcesPage from "@/components/pages/WrittenResourcesPage";
+import CalculatorsPage from "@/components/pages/CalculatorsPage";
 
 type ContentPageProps = {
   content: PageContent;
@@ -137,6 +147,43 @@ const GenericContentPage = ({ content, slug }: ContentPageProps) => {
 const ContentPage = ({ content, slug }: ContentPageProps) => {
   if (slug === "our-team/sub-teams") {
     return <SubteamsPage />;
+  }
+  if (slug === "our-team/mentors") {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-white px-6 text-center">
+        <p className="text-xl font-medium uppercase tracking-[0.2em] text-black/70">Work in progress</p>
+      </main>
+    );
+  }
+  if (slug === "our-team/leadership") {
+    return <LeadershipPage />;
+  }
+  if (slug === "outreach/library-events") {
+    return <LibraryEventsPage />;
+  }
+  if (slug === "outreach/cougar-workshops") {
+    return <CougarWorkshopsPage />;
+  }
+  if (slug === "outreach/soar-summer-programs") {
+    return <SoarSummerProgramsPage />;
+  }
+  if (slug === "outreach/toiletry-drive") {
+    return <ToiletryDrivePage />;
+  }
+  if (slug === "outreach/women-in-stem") {
+    return <WomenInStemPage />;
+  }
+  if (slug === "outreach/history") {
+    return <HistoryPage />;
+  }
+  if (slug === "resources/videos") {
+    return <VideosPage />;
+  }
+  if (slug === "resources/written-resources") {
+    return <WrittenResourcesPage />;
+  }
+  if (slug === "resources/calculators") {
+    return <CalculatorsPage />;
   }
 
   return <GenericContentPage content={content} slug={slug} />;

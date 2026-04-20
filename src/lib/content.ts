@@ -36,7 +36,6 @@ export const navLinks = [
     href: "/resources",
     children: [
       { label: "Videos", href: "/resources/videos" },
-      { label: "Animations", href: "/resources/animations" },
       { label: "Written Resources", href: "/resources/written-resources" },
       { label: "Presentations", href: "/resources/presentations" },
       { label: "Calculators", href: "/resources/calculators" },
@@ -424,13 +423,6 @@ export const pageContent: Record<string, PageContent> = {
     description:
       "A curated library of walkthroughs, build season recaps, and technical demonstrations.",
     image: "/images/robots/robotside1.png",
-  },
-  "resources/animations": {
-    title: "Animations",
-    subtitle: "Visualizing mechanisms.",
-    description:
-      "We use animations to explain intake, shooter, and drivetrain concepts to new students and partners.",
-    image: "/images/robots/robotside2.png",
   },
   "resources/written-resources": {
     title: "Written Resources",
