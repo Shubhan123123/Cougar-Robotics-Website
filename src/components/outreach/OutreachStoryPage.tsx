@@ -323,7 +323,7 @@ const OutreachStoryPage = ({ content }: { content: OutreachStoryContent }) => {
               {content.subtitle}
             </motion.p>
             <motion.p
-              className="text-sm leading-relaxed text-black/70"
+              className="text-base leading-8 text-black/80"
               variants={fadeUp}
               initial="hidden"
               animate="visible"
@@ -375,7 +375,7 @@ const OutreachStoryPage = ({ content }: { content: OutreachStoryContent }) => {
             {content.story.paragraphs.map((paragraph, index) => (
               <motion.p
                 key={paragraph}
-                className="text-sm leading-relaxed text-black/70"
+                className="text-base leading-8 text-black/80"
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10% 0px" }}
@@ -388,7 +388,7 @@ const OutreachStoryPage = ({ content }: { content: OutreachStoryContent }) => {
           <div className="lg:sticky lg:top-24">
             <div className="rounded-3xl border border-black/10 bg-white/80 p-6 shadow-[0_18px_60px_-50px_rgba(0,0,0,0.6)]">
               <p className="text-xs uppercase tracking-[0.3em] text-black/60">Key takeaways</p>
-              <ul className="mt-4 space-y-3 text-sm leading-relaxed text-black/70">
+              <ul className="mt-4 space-y-3 text-base leading-8 text-black/80">
                 {content.story.takeaways.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="mt-1 h-2 w-2 rounded-full bg-[#22c55e]" aria-hidden="true" />
@@ -430,7 +430,7 @@ const OutreachStoryPage = ({ content }: { content: OutreachStoryContent }) => {
         <div className="flex flex-col items-start justify-between gap-6 rounded-[36px] border border-black/10 bg-white/80 p-8 shadow-[0_20px_70px_-60px_rgba(0,0,0,0.6)] md:flex-row md:items-center">
           <div className="space-y-2">
             <p className="text-xs uppercase tracking-[0.4em] text-black/60">{content.finalCta.title}</p>
-            <p className="text-sm leading-relaxed text-black/70">{content.finalCta.body}</p>
+            <p className="text-base leading-8 text-black/80">{content.finalCta.body}</p>
           </div>
           <Button asChild>
             <Link href={content.finalCta.action.href} className="flex items-center gap-2">

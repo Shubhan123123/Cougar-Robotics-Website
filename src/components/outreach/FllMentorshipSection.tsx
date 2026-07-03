@@ -71,7 +71,7 @@ const FllMentorshipSectionMotion = () => {
             <h1 className="text-4xl uppercase tracking-[0.2em] text-black sm:text-5xl">
               FLL Mentorship
             </h1>
-            <p className="max-w-2xl text-sm leading-relaxed text-black/70">
+            <p className="max-w-2xl text-base leading-8 text-black/80">
               Two decades of hands-on mentorship, project guidance, and Core Values in action.
             </p>
           </div>
@@ -122,15 +122,15 @@ const FllMentorshipSectionMotion = () => {
                 style={{ height: shouldReduceMotion ? "0%" : progressHeight }}
               />
             </div>
-            <div className="space-y-6 text-sm leading-relaxed text-black/70">
+            <div className="space-y-6 text-base leading-8 text-black/80">
               <motion.p {...paragraphReveal}>
                 One of the most important goals of Team 1403 is to develop each and every student’s passion in STEM so that they can pursue it in the future. We introduce FIRST to the younger students of the district through our FIRST LEGO League (FLL) program in Montgomery Upper Middle School. Through our sponsoring and mentoring, we hope that their passion for STEM turns into something even greater in the future.
               </motion.p>
               <motion.p {...paragraphReveal}>
-                For the 2025 season, 1403 mentored the two FIRST LEGO League teams at our Upper Middle School Team 26361 The Roboclaws and Team 26362 The Thundercats. This year, we had 28 members from our team dedicate a total of 731 hours before the qualifying event. Since our volunteer mentors were all from different sub-teams, they were able to provide specialized hel[p for each aspect of the FLL competition. No matter what the task, members of Team 1403 were there to help. Through our critiquing and assistance, we help the younger students locate their mistakes, understand how/why they made that mistake, and how they can fix that mistake to improve the robot. The members will also guide the younger students in the project section by directing them on places to look for information and sharing giving their advice on the ideas.
+                For the 2025 season, 1403 mentored the two FIRST LEGO League teams at our Upper Middle School: Team 26361 The Roboclaws and Team 26362 The Thundercats. This year, we had 28 members from our team dedicate a total of 731 hours before the qualifying event. Since our volunteer mentors were all from different sub-teams, they were able to provide specialized help for each aspect of the FLL competition. No matter what the task, members of Team 1403 were there to help. Through our critiquing and assistance, we help the younger students locate their mistakes, understand how and why they made that mistake, and how they can fix it to improve the robot. The members also guide the younger students in the project section by directing them to useful research sources and sharing advice on their ideas.
               </motion.p>
               <motion.p {...paragraphReveal}>
-                Through our mentoring and support, we provide the younger generations with examples of Gracious Professionalism and Coopertition, such as by sharing stories and interacting with each other cohesively. We make sure we instill the Core Values of FLL, such as Gracious Professionalism and Coopertition. Through our critiquing and assistance, we help the younger students locate their mistakes, understand how/why they made that mistake, and how they can fix that mistake to improve the robot. The members will also guide the younger students in the project section by directing them on places to look for information and sharing giving their advice on the ideas.
+                Through our mentoring and support, we provide the younger generations with examples of Gracious Professionalism and Coopertition by sharing stories, modeling teamwork, and helping students communicate through challenges. We make sure those FLL Core Values are visible in how the teams learn, compete, and reflect together.
               </motion.p>
               <motion.p {...paragraphReveal}>
                 Throughout the end of the season, the team faced many obstacles, but the most important lesson that they learned was to accept and learn from their losses. Everybody makes mistakes, but it is vital to detect them in order to know where growth is needed. Many of the students plan to join 1403 in the future, and we believe they will be a great addition because of their diligence, intelligence, and hard work.

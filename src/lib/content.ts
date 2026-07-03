@@ -106,7 +106,7 @@ export const newsContent = {
       title: "Trunk or Treat",
       slug: "trunk-or-treat",
       href: "/news/trunk-or-treat",
-      author: "Kevin He",
+      author: "Kevin",
       date: "January 16, 2026",
       excerpt:
         "At the Montgomery Township's Trunk or Treat Event, 1403 presents a candy-dispensing, Frankenstein-themed robot to over 100 people. Every time a child stepped near the robot, they would press a...",
@@ -116,7 +116,7 @@ export const newsContent = {
       title: "2025 Hatboro-Horsham Competition Newsletter",
       slug: "2025-hatboro-horsham-competition-newsletter",
       href: "/news/2025-hatboro-horsham-competition-newsletter",
-      author: "Neel Deodhar",
+      author: "Neel",
       date: "March 15, 2025",
       excerpt:
         "On March 1st and 2nd, 2025, Team 1403 Cougar Robotics competed at the first competition of the season, the FIRST Mid-Atlantic Hatboro-Horsham District Event in Horsham, Pennsylvania. At the end...",
@@ -126,7 +126,7 @@ export const newsContent = {
       title: "2025 Build Season Issue #7 Newsletter",
       slug: "2025-build-season-issue-7-newsletter",
       href: "/news/2025-build-season-issue-7-newsletter",
-      author: "Neel Deodhar",
+      author: "Neel",
       date: "March 13, 2025",
       excerpt:
         "2/16/25 - 2/22/25 Our Team As the Hatboro-Horsham Event approaches, robot and logistic subteams have been working vigorously to complete all components. Logistics side has been preparing the Impact Binder...",
@@ -136,7 +136,7 @@ export const newsContent = {
       title: "2025 Build Season Issue #6 Newsletter",
       slug: "2025-build-season-issue-6-newsletter",
       href: "/news/2025-build-season-issue-6-newsletter",
-      author: "Neel Deodhar",
+      author: "Neel",
       date: "March 8, 2025",
       excerpt:
         "2/10/25-2/15/25 Our Team In the sixth week of build season, Robot side has been diligently fabricating, programming, and wiring components of the robot, while Logistics side has continued strategizing for...",
@@ -146,7 +146,7 @@ export const newsContent = {
       title: "2025 Build Season Issue #5 Newsletter",
       slug: "2025-build-season-issue-5-newsletter",
       href: "/news/2025-build-season-issue-5-newsletter",
-      author: "Neel Deodhar",
+      author: "Neel",
       date: "March 8, 2025",
       excerpt:
         "2/3/25 - 2/8/25 Our Team Team 1403 has made significant progress in the robot's construction, and it will soon be match-ready. Logistics side has been looking into new ways to...",
@@ -156,7 +156,7 @@ export const newsContent = {
       title: "2025 Build Season Issue #4 Newsletter",
       slug: "2025-build-season-issue-4-newsletter",
       href: "/news/2025-build-season-issue-4-newsletter",
-      author: "Neel Deodhar",
+      author: "Neel",
       date: "February 22, 2025",
       excerpt:
         "1/27/25 - 2/1/25 Our Team As the Hatboro-Horsham competition approaches, 1403 has continued designing, fabricating, and wiring the robot. We've also been marketing our team, planning outreach events, and strategizing...",
@@ -166,7 +166,7 @@ export const newsContent = {
       title: "2025 Build Season Issue #3 Newsletter",
       slug: "2025-build-season-issue-3-newsletter",
       href: "/news/2025-build-season-issue-3-newsletter",
-      author: "Neel Deodhar",
+      author: "Neel",
       date: "February 22, 2025",
       excerpt:
         "1/20/25 - 1/25/25 Our Team In the third week of build season, 1403 has been hard at work as the Hatboro-Horsham Competition nears. Robot side has been planning, machining, and...",
@@ -176,7 +176,7 @@ export const newsContent = {
       title: "2025 Build Season Issue #2 Newsletter",
       slug: "2025-build-season-issue-2-newsletter",
       href: "/news/2025-build-season-issue-2-newsletter",
-      author: "Neel Deodhar",
+      author: "Neel",
       date: "January 25, 2025",
       excerpt:
         "1/13/25-1/18/25 Our Team Following a productive first week of Build Season, the team has been continuing our efforts as we prepare for our first competition. Robot side has been bringing...",
@@ -186,7 +186,7 @@ export const newsContent = {
       title: "2025 Build Season Issue #1 Newsletter",
       slug: "2025-build-season-issue-1-newsletter",
       href: "/news/2025-build-season-issue-1-newsletter",
-      author: "Neel Deodhar",
+      author: "Neel",
       date: "January 25, 2025",
       excerpt:
         "1/6/25 - 1/11/25 Our Team After a successful kickoff, our team convened in the commons to brainstorm the needs, wants, and wishes for the robot this year. Based on these...",
@@ -196,7 +196,7 @@ export const newsContent = {
       title: "2025 Kickoff Newsletter",
       slug: "2025-kickoff-newsletter",
       href: "/news/2025-kickoff-newsletter",
-      author: "Neel Deodhar",
+      author: "Neel",
       date: "January 18, 2025",
       excerpt:
         "On January 4th, 2025, Team 1403 hosted their 19th annual Kickoff event at Montgomery High School in Skillman, NJ. With 37 teams in attendance, our team held various workshops and...",

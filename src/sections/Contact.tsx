@@ -32,6 +32,9 @@ const Contact = () => {
         className={`${styles.cta} ${allowMotion ? styles.ctaAnimated : ""} grid gap-8 rounded-[36px] border border-black/10 p-8 shadow-[0_30px_90px_-70px_rgba(0,0,0,0.65)] md:grid-cols-[1.2fr_0.8fr]`}
       >
         <div className="space-y-6">
+          <p data-reveal className="max-w-2xl text-base leading-8 text-black/80">
+            Reach out for sponsorships, outreach collaborations, student opportunities, or event partnerships.
+          </p>
           <h2 data-reveal className="text-xl uppercase tracking-[0.3em] text-black">
             {contactContent.email}
           </h2>

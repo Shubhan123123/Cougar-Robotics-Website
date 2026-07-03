@@ -50,7 +50,7 @@ const GenericContentPage = ({ content, slug }: ContentPageProps) => {
             <h2 data-reveal className="text-lg uppercase tracking-[0.35em] text-black/70">
               {content.subtitle}
             </h2>
-            <p data-reveal className="text-sm leading-relaxed text-black/70">
+            <p data-reveal className="text-base leading-8 text-black/80">
               {content.description}
             </p>
             <div data-reveal className="flex flex-wrap gap-3">
@@ -83,7 +83,7 @@ const GenericContentPage = ({ content, slug }: ContentPageProps) => {
             <h3 data-reveal className="text-2xl uppercase tracking-[0.3em] text-black">
               Chapter Focus
             </h3>
-            <p data-reveal className="text-sm leading-relaxed text-black/70">
+            <p data-reveal className="text-base leading-8 text-black/80">
               We use this moment to spotlight the discipline, mentorship, and community investment that powers
               our robotics work. Scroll to continue the story.
             </p>
@@ -133,7 +133,7 @@ const GenericContentPage = ({ content, slug }: ContentPageProps) => {
                       />
                     </div>
                   ) : null}
-                  <p className="mt-4 text-sm leading-relaxed text-black/70">{section.body}</p>
+                  <p className="mt-4 text-base leading-8 text-black/80">{section.body}</p>
                 </article>
               ))}
             </div>

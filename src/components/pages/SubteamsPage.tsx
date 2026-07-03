@@ -253,12 +253,12 @@ export default function SubteamsPage() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <div className={styles.photoboardHeader}>
-            <p className={styles.photoboardLabel}>Team Photoboard</p>
+            <p className={styles.photoboardLabel}>Build Season Snapshot</p>
           </div>
           <div className={styles.photoboardFrame}>
             <Image
-              src="/images/Photoboard.jpg"
-              alt="Team 1403 photoboard"
+              src="/images/buildseason/Copy%20of%20IMG_3643.JPG"
+              alt="Team 1403 students during build season"
               width={1600}
               height={1000}
               className={styles.photoboardImage}

@@ -34,7 +34,7 @@ export default function Home() {
     <main className="min-h-screen bg-white text-black">
       {ENABLE_HERO_SCROLL && (
         <HeroScroll
-          imageSrc="/images/team/FinalPhotoboard.JPG"
+          imageSrc="/images/buildseason/Copy%20of%20IMG_2121.JPG"
           title={`${heroContent.titleLines[0]} ${heroContent.titleLines[1]}`}
           subtitle={heroContent.subtitle}
         />

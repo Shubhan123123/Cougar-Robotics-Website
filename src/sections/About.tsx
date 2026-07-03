@@ -44,7 +44,7 @@ const About = () => {
                   className="h-40 w-full object-cover"
                 />
               </div>
-              <p className="text-sm leading-relaxed text-black/70">{card.body}</p>
+              <p className="text-base leading-8 text-black/80">{card.body}</p>
             </div>
           </article>
         ))}

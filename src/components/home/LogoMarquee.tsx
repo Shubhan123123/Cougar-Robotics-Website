@@ -19,13 +19,16 @@ const LogoMarquee = () => {
         <div className={`${styles.marquee} ${styles.fadeEdges}`}>
           <div className={allowMotion ? styles.track : styles.trackStatic}>
             {logos.map((logo, index) => (
-              <div key={`${logo.name}-${index}`} className="flex items-center px-6">
+              <div
+                key={`${logo.name}-${index}`}
+                className="flex min-w-[180px] items-center justify-center px-5 sm:min-w-[220px] sm:px-6 lg:min-w-[250px]"
+              >
                 <Image
                   src={logo.src}
                   alt={`${logo.name} logo`}
-                  width={160}
-                  height={80}
-                  className="h-10 w-auto object-contain opacity-70"
+                  width={240}
+                  height={120}
+                  className="h-14 w-auto object-contain opacity-90 sm:h-16 lg:h-20"
                 />
               </div>
             ))}

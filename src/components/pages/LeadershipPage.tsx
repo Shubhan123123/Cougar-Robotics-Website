@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+const smoothEase = [0.25, 0.1, 0.25, 1] as const;
+
 type Member = {
   name: string;
   image?: string;
@@ -117,7 +119,7 @@ const sectionVariants = {
     y: 0,
     transition: {
       duration: 0.55,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: smoothEase,
       when: "beforeChildren" as const,
       staggerChildren: 0.08,
     },
@@ -129,7 +131,7 @@ const memberVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.42, ease: [0.25, 0.1, 0.25, 1] },
+    transition: { duration: 0.42, ease: smoothEase },
   },
 };
 
@@ -147,7 +149,7 @@ const resolveMemberImage = (group: LeadershipGroup, member: Member, index: numbe
   if (member.image) {
     return member.image;
   }
-  return group.images[index] ?? group.images[0] ?? "/images/team/FinalPhotoboard.JPG";
+  return group.images[index] ?? group.images[0] ?? "/images/buildseason/Copy%20of%20IMG_3643.JPG";
 };
 
 const LeadershipPage = () => {

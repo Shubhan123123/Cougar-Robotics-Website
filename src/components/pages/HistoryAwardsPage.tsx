@@ -1,657 +1,348 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
-import { Calendar, Filter, Medal, SortAsc, SortDesc, Trophy } from "lucide-react";
-import { useMemo, useState } from "react";
 
-type TimelineEntry = {
+type HistoryYear = {
   year: number;
   title: string;
-  description: string;
-  image: string;
-  accent: string;
-  imagePosition?: string;
+  summary: string;
+  image?: string;
+  imageAlt?: string;
+  highlights: string[];
+  imageTodo?: string;
 };
 
-type AwardEntry = {
-  id: string;
-  year: number;
-  title: string;
-  event: string;
-  type: string;
-  image: string;
-  category?: string;
-  featured?: boolean;
-};
-
-const TIMELINE_ENTRIES: TimelineEntry[] = [
+const teamHistory: HistoryYear[] = [
   {
     year: 2004,
-    title: "Team 1403 Founded",
-    description:
-      "Team 1403 Cougar Robotics launches at Montgomery Township, establishing a student-first culture for build design, logistics, and outreach.",
-    image: "/images/buildseason/Copy of IMG_3643.JPG",
-    accent: "Origins",
-    imagePosition: "center 28%",
+    title: "Team 1403 Is Founded",
+    summary: "Cougar Robotics begins building a student-led engineering and outreach culture in Montgomery.",
+    image: "/images/History1.png",
+    imageAlt: "Early historical Team 1403 archive photo",
+    highlights: [
+      "Team 1403 Cougar Robotics is established in Montgomery Township.",
+      "The team begins building the foundation for its robot, outreach, and logistics programs.",
+    ],
+  },
+  {
+    year: 2005,
+    title: "Archive Year",
+    summary: "The public site does not yet include a verified 2005 milestone list.",
+    highlights: ["TODO: Add confirmed awards, honors, and major events from the 2005 team archive."],
+    imageTodo: "TODO: Replace with a verified 2005 historical photo from Google Drive.",
+  },
+  {
+    year: 2006,
+    title: "Monty Madness Begins",
+    summary: "An off-season event tradition starts and later grows into the Montgomery District Event.",
+    image: "/images/History2.jpg",
+    imageAlt: "Historical Team 1403 outreach archive photo",
+    highlights: [
+      "Monty Madness begins as an off-season event.",
+      "This event later grows into the Montgomery District competition hosted by Team 1403.",
+    ],
+  },
+  {
+    year: 2007,
+    title: "First Kickoff Hosted",
+    summary: "The team launches a lasting Kickoff tradition for local FRC teams.",
+    image: "/images/History3.jpg",
+    imageAlt: "Historical Team 1403 event archive photo",
+    highlights: [
+      "Team 1403 hosts its first Kickoff event.",
+      "The Kickoff becomes a long-running hub for game reveal, kits, and shared learning.",
+    ],
+  },
+  {
+    year: 2008,
+    title: "Archive Year",
+    summary: "More verified archival detail is still needed for this season.",
+    highlights: ["TODO: Add confirmed 2008 awards, honors, and major events from team records."],
+    imageTodo: "TODO: Replace with a verified 2008 historical photo from Google Drive.",
+  },
+  {
+    year: 2009,
+    title: "Archive Year",
+    summary: "More verified archival detail is still needed for this season.",
+    highlights: ["TODO: Add confirmed 2009 awards, honors, and major events from team records."],
+    imageTodo: "TODO: Replace with a verified 2009 historical photo from Google Drive.",
   },
   {
     year: 2010,
-    title: "First Major Chairman Recognition",
-    description:
-      "Our first major recognition comes with Chairman's Award at the New Jersey Regional, setting a high standard for team culture and community impact.",
-    image: "/images/buildseason/Copy of IMG_9026.JPG",
-    accent: "Leadership",
-    imagePosition: "center 34%",
-  },
-  {
-    year: 2015,
-    title: "Competition Momentum Builds",
-    description:
-      "First district winner milestone at Bridgewater-Raritan District confirms competitive strength after years of process refinement.",
-    image: "/images/buildseason/Copy of IMG_9369.JPG",
-    accent: "Execution",
-    imagePosition: "center 30%",
-  },
-  {
-    year: 2019,
-    title: "Culture of Consistent Excellence",
-    description:
-      "2019 brought an exceptional run of district and championship-level recognition, reinforcing the team as a reliable technical presence.",
-    image: "/images/buildseason/Copy of IMG_2121.JPG",
-    accent: "Sustainability",
-    imagePosition: "center 36%",
-  },
-  {
-    year: 2020,
-    title: "Cross-Event Impact in a New Format",
-    description:
-      "The team continued to deliver resilient results through remote competition phases, including Chairman achievement at Hatboro-Horsham.",
-    image: "/images/buildseason/Copy of IMG_8613.JPG",
-    accent: "Adaptability",
-    imagePosition: "center 40%",
-  },
-  {
-    year: 2023,
-    title: "Impact and Outreach Growth",
-    description:
-      "Robotics development and community impact continued to mature in parallel, culminating in First Impact recognition at district competition.",
-    image: "/images/buildseason/Copy of IMG_9245.JPG",
-    accent: "Impact",
-    imagePosition: "center 32%",
-  },
-  {
-    year: 2024,
-    title: "Championing Performance and Depth",
-    description:
-      "A strong competitive arc continues with multiple district winner moments and a refined engineering leadership model.",
-    image: "/images/buildseason/Copy of IMG_9369.JPG",
-    accent: "Performance",
-    imagePosition: "center 30%",
-  },
-];
-
-const AWARDS: AwardEntry[] = [
-  {
-    id: "2010-nj-chairman",
-    year: 2010,
-    title: "Chairman's Award",
-    event: "New Jersey Regional",
-    type: "Chairman's Award",
+    title: "First Chairman's Breakthrough",
+    summary: "A major culture-and-impact milestone arrives on the regional stage.",
     image: "/images/awards/2010-nj-regional-chairmans.jpg",
-    category: "Core Values",
-    featured: true,
+    imageAlt: "2010 New Jersey Regional Chairman's Award banner",
+    highlights: [
+      "Wins the Chairman's Award at the New Jersey Regional.",
+      "The award establishes a long-term benchmark for team culture, outreach, and leadership.",
+    ],
   },
   {
-    id: "2015-bridgewater-winner",
+    year: 2011,
+    title: "Archive Year",
+    summary: "This season needs more archival detail before it can be published accurately.",
+    highlights: ["TODO: Add confirmed 2011 awards, honors, and major events from team records."],
+    imageTodo: "TODO: Replace with a verified 2011 historical photo from Google Drive.",
+  },
+  {
+    year: 2012,
+    title: "Archive Year",
+    summary: "This season needs more archival detail before it can be published accurately.",
+    highlights: ["TODO: Add confirmed 2012 awards, honors, and major events from team records."],
+    imageTodo: "TODO: Replace with a verified 2012 historical photo from Google Drive.",
+  },
+  {
+    year: 2013,
+    title: "Archive Year",
+    summary: "This season needs more archival detail before it can be published accurately.",
+    highlights: ["TODO: Add confirmed 2013 awards, honors, and major events from team records."],
+    imageTodo: "TODO: Replace with a verified 2013 historical photo from Google Drive.",
+  },
+  {
+    year: 2014,
+    title: "Archive Year",
+    summary: "This season needs more archival detail before it can be published accurately.",
+    highlights: ["TODO: Add confirmed 2014 awards, honors, and major events from team records."],
+    imageTodo: "TODO: Replace with a verified 2014 historical photo from Google Drive.",
+  },
+  {
     year: 2015,
-    title: "Winner",
-    event: "Bridgewater-Raritan District",
-    type: "Winner",
+    title: "First District Winner",
+    summary: "Competitive consistency turns into a major on-field result.",
     image: "/images/awards/2015-bridgewater-winner.jpg",
-    category: "Competition",
+    imageAlt: "2015 Bridgewater-Raritan District Winner banner",
+    highlights: [
+      "Wins the Bridgewater-Raritan District Event.",
+      "The season marks a major step forward in competitive performance.",
+    ],
   },
   {
-    id: "2016-montgomery-chairman",
     year: 2016,
-    title: "Chairman's Award",
-    event: "Montgomery District",
-    type: "Chairman's Award",
+    title: "Home Event Chairman's Award",
+    summary: "The team earns another defining culture award close to home.",
     image: "/images/awards/2016-Montgomery-Event-Chairmans.jpg",
-    category: "Core Values",
+    imageAlt: "2016 Montgomery Event Chairman's Award banner",
+    highlights: [
+      "Wins the Chairman's Award at the Montgomery District Event.",
+      "Team impact and presentation continue to grow alongside robot performance.",
+    ],
   },
   {
-    id: "2019-bridgewater-winner",
-    year: 2019,
-    title: "Winner",
-    event: "Bridgewater-Raritan District",
-    type: "Winner",
-    image: "/images/awards/2019-Bridgewater-winner.jpg",
-    category: "Competition",
+    year: 2017,
+    title: "Compass Alliance Era",
+    summary: "Team 1403 expands its resource-sharing role beyond its own program.",
+    image: "/images/TCA-1.jpg",
+    imageAlt: "The Compass Alliance program image",
+    highlights: [
+      "Team 1403 becomes part of The Compass Alliance.",
+      "The team begins contributing to a broader network of shared resources for other FIRST teams.",
+    ],
   },
   {
-    id: "2019-mid-atlantic-chairman",
+    year: 2018,
+    title: "Community Presence Deepens",
+    summary: "Public-facing outreach keeps growing in both service and STEM advocacy.",
+    image: "/images/History5.jpg",
+    imageAlt: "Wreaths Across America historical event photo",
+    highlights: [
+      "Montgomery High School hosts a Wreaths Across America stop on December 12, 2018 with Team 1403 in attendance.",
+      "Women in STEM programming is active by this point and continues to become a recurring team initiative.",
+    ],
+  },
+  {
     year: 2019,
-    title: "Chairman's Award",
-    event: "Mid-Atlantic District Championship",
-    type: "Chairman's Award",
+    title: "District and Outreach Breakout Year",
+    summary: "This season pairs elite competitive success with expanding community impact.",
     image: "/images/awards/2019-Chairmans-FMA-District.jpg",
-    category: "Core Values",
+    imageAlt: "2019 Mid-Atlantic District Championship Chairman's Award banner",
+    highlights: [
+      "Wins the Bridgewater-Raritan District Event.",
+      "Wins the Chairman's Award at the Mount Olive District Event.",
+      "Wins the Chairman's Award at the Mid-Atlantic District Championship.",
+      "Hosts the first Compass Alliance Workshop in September 2019.",
+      "Supports Eagle Scout service projects with 88.5 volunteer hours recorded in district outreach materials.",
+    ],
   },
   {
-    id: "2019-mount-olive-chairman",
-    year: 2019,
-    title: "Chairman's Award",
-    event: "Mount Olive District",
-    type: "Chairman's Award",
-    image: "/images/awards/2019-Mt-Olive-Chairmans-.jpg",
-    category: "Core Values",
-    featured: true,
-  },
-  {
-    id: "2020-hatboro-chairman",
     year: 2020,
-    title: "Chairman's Award",
-    event: "Hatboro-Horsham District",
-    type: "Chairman's Award",
+    title: "Resilient Impact Through Change",
+    summary: "The team adapts while maintaining both outreach momentum and award-level impact.",
     image: "/images/awards/hh20201.png",
-    category: "Core Values",
+    imageAlt: "2020 Hatboro-Horsham Chairman's Award banner",
+    highlights: [
+      "Wins the Chairman's Award at the Hatboro-Horsham District Event.",
+      "Wins the Chairman's Award at the FIRST Mid-Atlantic District Championship.",
+      "The January 25, 2020 Science and Invention Convention archive shows 216 student participants judged by Team 1403 volunteers.",
+    ],
   },
   {
-    id: "2020-mid-atlantic-chairman",
-    year: 2020,
-    title: "Chairman's Award",
-    event: "FIRST Mid-Atlantic District Championship",
-    type: "Chairman's Award",
-    image: "/images/awards/Screenshot_3.png",
-    category: "Core Values",
-  },
-  {
-    id: "2021-remote-chairman",
     year: 2021,
-    title: "Chairman's Award",
-    event: "Mid-Atlantic Remote",
-    type: "Chairman's Award",
+    title: "Remote-Era Continuity",
+    summary: "The team preserves culture, outreach, and recognition during a difficult season.",
     image: "/images/awards/Screenshot-24-1.png",
-    category: "Core Values",
+    imageAlt: "2021 Mid-Atlantic Remote Chairman's Award banner",
+    highlights: [
+      "Wins the Chairman's Award in the Mid-Atlantic Remote format.",
+      "The team continues Kickoff, outreach, and internal training programs through remote and hybrid adjustments.",
+    ],
   },
   {
-    id: "2022-mount-olive-winner",
     year: 2022,
-    title: "Winner",
-    event: "Mount Olive District",
-    type: "Winner",
-    image: "/images/awards/Screenshot-25-1.png",
-    category: "Competition",
-  },
-  {
-    id: "2022-montgomery-chairman",
-    year: 2022,
-    title: "Chairman's Award",
-    event: "Montgomery District",
-    type: "Chairman's Award",
-    image: "/images/awards/Screenshot-26.png",
-    category: "Core Values",
-    featured: true,
-  },
-  {
-    id: "2022-mid-atlantic-woodie",
-    year: 2022,
-    title: "Woodie Flowers Finalist Award",
-    event: "Mid-Atlantic District Championship",
-    type: "Woodie Flowers Finalist Award",
-    image: "/images/awards/Screenshot-27.png",
-    category: "Innovation",
-    featured: true,
-  },
-  {
-    id: "2022-mid-atlantic-chairman",
-    year: 2022,
-    title: "Chairman's Award",
-    event: "Mid-Atlantic District Championship",
-    type: "Chairman's Award",
+    title: "Awards Across Multiple Fronts",
+    summary: "Competition wins, culture awards, and mentor recognition all land in the same season.",
     image: "/images/awards/Screenshot-28.png",
-    category: "Core Values",
+    imageAlt: "2022 Mid-Atlantic District Championship Chairman's Award banner",
+    highlights: [
+      "Wins the Mount Olive District Event.",
+      "Wins the Chairman's Award at the Montgomery District Event.",
+      "Wins the Chairman's Award at the Mid-Atlantic District Championship.",
+      "Earns the Woodie Flowers Finalist Award at the Mid-Atlantic District Championship.",
+    ],
   },
   {
-    id: "2023-robbinsville-impact",
     year: 2023,
-    title: "FIRST Impact Award",
-    event: "Robbinsville District",
-    type: "Impact Award",
+    title: "Impact and Performance Together",
+    summary: "The team pairs outreach recognition with another strong competitive result.",
     image: "/images/awards/Screenshot-29.png",
-    category: "Community Outreach",
-    featured: true,
+    imageAlt: "2023 Robbinsville FIRST Impact Award banner",
+    highlights: [
+      "Wins the FIRST Impact Award at the Robbinsville District Event.",
+      "Wins the Montgomery District Event.",
+      "Runs its 17th annual Skillman Kickoff with technical, logistical, and mentor workshops documented in the 2023 Impact Essay.",
+    ],
   },
   {
-    id: "2023-montgomery-winner",
-    year: 2023,
-    title: "Winner",
-    event: "Montgomery District",
-    type: "Winner",
-    image: "/images/awards/Screenshot-30.png",
-    category: "Competition",
-  },
-  {
-    id: "2024-montgomery-winner",
     year: 2024,
-    title: "Winner",
-    event: "Montgomery District",
-    type: "Winner",
+    title: "New Programs, New Recognition",
+    summary: "The archive shows both fresh outreach initiatives and another district win.",
     image: "/images/awards/Screenshot-35.png",
-    category: "Competition",
-    featured: true,
+    imageAlt: "2024 Montgomery District Winner banner",
+    highlights: [
+      "Wins the Montgomery District Event.",
+      "Launches the Leicht Scholarship in 2024.",
+      "Begins Bridgewater Temple robotics classes in September 2024.",
+      "Impact documentation references Theraprints, a senior-focused outreach initiative launched in 2024.",
+    ],
+  },
+  {
+    year: 2025,
+    title: "Documented Growth",
+    summary: "The site archive captures a season focused on continued outreach depth and historical continuity.",
+    image: "/images/fll.png",
+    imageAlt: "FIRST LEGO League mentorship session",
+    highlights: [
+      "Build season newsletters and 2025 Impact Documentation are published on the site.",
+      "The 2025 FLL program page records 28 mentors and 731 volunteer hours for the season.",
+      "The 2025 Kickoff newsletter records 37 teams in attendance at the 19th annual event.",
+    ],
+  },
+  {
+    year: 2026,
+    title: "20th Annual Kickoff Season",
+    summary: "Current site materials document the 2026 resource set while competition archives continue to be updated.",
+    image: "/images/Cougar-Workshops.png",
+    imageAlt: "Cougar Robotics workshop materials image",
+    highlights: [
+      "20th Annual Kickoff resources for the 2026 season are published on the website.",
+      "TODO: Add verified 2026 awards, honors, and major events after the season archive is finalized.",
+    ],
   },
 ];
 
-const timelineMotion = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-  },
-};
-
-type AwardsToolbarProps = {
-  years: number[];
-  awardTypes: string[];
-  selectedYear: string;
-  selectedType: string;
-  sortOrder: "newest" | "oldest";
-  onYearChange: (year: string) => void;
-  onTypeChange: (type: string) => void;
-  onSortChange: (sortOrder: "newest" | "oldest") => void;
-};
-
-const AwardsToolbar = ({
-  years,
-  awardTypes,
-  selectedYear,
-  selectedType,
-  sortOrder,
-  onYearChange,
-  onTypeChange,
-  onSortChange,
-}: AwardsToolbarProps) => {
-  return (
-    <section className="rounded-[32px] border border-black/10 bg-white/80 p-5 shadow-[0_20px_70px_-60px_rgba(0,0,0,0.35)] backdrop-blur">
-      <div className="mb-4 flex items-center gap-3">
-        <div className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black">
-          <Filter className="h-4 w-4" />
-        </div>
-        <p className="text-xs uppercase tracking-[0.35em] text-black/70">Awards filters</p>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-3">
-        <label className="space-y-2 text-sm">
-          <span className="block font-semibold text-black">Year</span>
-          <select
-            value={selectedYear}
-            onChange={(event) => onYearChange(event.target.value)}
-            className="w-full rounded-2xl border border-black/10 bg-white px-3 py-2 text-sm uppercase tracking-[0.14em] text-black/80 focus-visible:ring-2 focus-visible:ring-black/20"
-          >
-            <option value="all">All years</option>
-            {years.map((year) => (
-              <option key={year} value={String(year)}>
-                {year}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="space-y-2 text-sm">
-          <span className="block font-semibold text-black">Award type</span>
-          <select
-            value={selectedType}
-            onChange={(event) => onTypeChange(event.target.value)}
-            className="w-full rounded-2xl border border-black/10 bg-white px-3 py-2 text-sm uppercase tracking-[0.14em] text-black/80 focus-visible:ring-2 focus-visible:ring-black/20"
-          >
-            <option value="all">All types</option>
-            {awardTypes.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="space-y-2 text-sm">
-          <span className="block font-semibold text-black">Sort</span>
-          <select
-            value={sortOrder}
-            onChange={(event) => onSortChange(event.target.value as "newest" | "oldest")}
-            className="w-full rounded-2xl border border-black/10 bg-white px-3 py-2 text-sm uppercase tracking-[0.14em] text-black/80 focus-visible:ring-2 focus-visible:ring-black/20"
-          >
-            <option value="newest">Newest first</option>
-            <option value="oldest">Oldest first</option>
-          </select>
-        </label>
-      </div>
-      <p className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.32em] text-black/60">
-        {sortOrder === "newest" ? <SortDesc className="h-3.5 w-3.5" /> : <SortAsc className="h-3.5 w-3.5" />}
-        Dynamic filtering and sort controls
-      </p>
-    </section>
-  );
-};
-
-type AwardCardProps = {
-  award: AwardEntry;
-};
-
-const AwardCard = ({ award }: AwardCardProps) => {
-  const shouldReduceMotion = useReducedMotion();
-
-  return (
-    <motion.article
-      variants={timelineMotion}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ amount: 0.25, once: true }}
-      whileHover={shouldReduceMotion ? undefined : { y: -8 }}
-      transition={{ duration: 0.45, type: "spring", bounce: 0.22 }}
-      className="group relative overflow-hidden rounded-[28px] border border-black/10 bg-white"
-    >
-      <div className="relative h-56 w-full overflow-hidden bg-[linear-gradient(135deg,rgba(0,0,0,0.04),rgba(0,79,0,0.05))]">
-        <Image
-          src={award.image}
-          alt={`${award.title} banner`}
-          fill
-          className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.02]"
-          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-        />
-        <p className="absolute left-3 top-3 inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-[0.58rem] font-medium uppercase tracking-[0.2em] text-black">
-          {award.category}
-        </p>
-        <p className="absolute right-3 top-3 inline-flex items-center rounded-full bg-black/80 px-3 py-1 text-xs font-semibold text-white">
-          {award.year}
-        </p>
-      </div>
-      <div className="space-y-3 border-t border-black/10 p-4 sm:p-5">
-        <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-black/60">
-          <Trophy className="h-3.5 w-3.5" />
-          {award.type}
-        </p>
-        <h3 className="text-lg uppercase tracking-[0.16em] text-black">{award.title}</h3>
-        <p className="text-sm text-black/75">{award.event}</p>
-      </div>
-      <div className="absolute inset-0 rounded-[28px] border border-white/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none shadow-[0_24px_70px_-45px_rgba(34,197,94,0.65)]" />
-    </motion.article>
-  );
-};
-
-type AwardsGridProps = {
-  awardRows: Array<{ year: number; items: AwardEntry[] }>;
-};
-
-const AwardsGrid = ({ awardRows }: AwardsGridProps) => {
-  const shouldReduceMotion = useReducedMotion();
-
-  if (awardRows.length === 0) {
-    return (
-      <div className="rounded-[28px] border border-black/10 bg-white/85 p-10 text-center">
-        <p className="text-sm uppercase tracking-[0.28em] text-black/60">No awards match these filters</p>
-        <p className="mt-2 text-sm text-black/50">
-          Adjust your year or award-type selection to reveal more results.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-10">
-      {awardRows.map((group, groupIndex) => (
-        <section
-          key={group.year}
-          className="rounded-[30px] border border-black/10 bg-white/90 p-4 sm:p-5 shadow-[0_20px_70px_-60px_rgba(0,0,0,0.6)]"
-        >
-          <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/10 pb-4">
-            <h3 className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-black">
-              <Calendar className="h-4 w-4" />
-              {group.year}
-            </h3>
-            <p className="text-xs uppercase tracking-[0.16em] text-black/55">
-              {group.items.length} award{group.items.length === 1 ? "" : "s"}
-            </p>
-          </div>
-          <motion.div
-            className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.12 }}
-            custom={groupIndex}
-            variants={{
-              hidden: {},
-              show: shouldReduceMotion ? {} : { transition: { staggerChildren: 0.08 } },
-            }}
-          >
-            {group.items.map((award) => (
-              <AwardCard key={award.id} award={award} />
-            ))}
-          </motion.div>
-        </section>
-      ))}
-    </div>
-  );
-};
-
-const FeaturedAwards = ({ awards }: { awards: AwardEntry[] }) => {
-  return (
-    <section className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-2xl uppercase tracking-[0.24em] text-black">Featured honors</h2>
-        <p className="text-xs uppercase tracking-[0.28em] text-black/60">Major impact moments</p>
-      </div>
-      <div className="grid gap-4 md:grid-cols-2">
-        {awards.map((award) => (
-          <div
-            key={award.id}
-            className="relative overflow-hidden rounded-[28px] border border-black/10 bg-white/95 p-5 shadow-[0_25px_80px_-65px_rgba(0,0,0,0.7)]"
-          >
-            <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-black/65">
-              <Medal className="h-3.5 w-3.5" />
-              {award.type}
-            </p>
-            <p className="mt-4 text-xl uppercase tracking-[0.16em] text-black">{award.title}</p>
-            <p className="mt-2 text-sm text-black/75">{award.event}</p>
-            <p className="mt-1 text-sm font-semibold text-black">{award.year}</p>
-            <div className="mt-4 grid gap-3 rounded-2xl border border-black/10 bg-black/[0.03] p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-black/60">Gallery excerpt</p>
-              <div className="relative h-36 overflow-hidden rounded-xl">
-                <Image
-                  src={award.image}
-                  alt={award.title}
-                  fill
-                  className="object-contain bg-white p-2"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-const TeamTimeline = ({ milestones }: { milestones: TimelineEntry[] }) => {
-  const shouldReduceMotion = useReducedMotion();
-
-  return (
-    <section>
-      <div className="mb-6 flex items-center justify-between gap-3">
-        <h2 className="text-2xl uppercase tracking-[0.24em] text-black">Team history</h2>
-        <p className="text-xs uppercase tracking-[0.24em] text-black/60">Timeline of growth</p>
-      </div>
-      <div className="relative overflow-hidden rounded-[34px] border border-black/10 bg-white/90 p-6 md:p-8">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-50"
-          style={{
-            background:
-              "radial-gradient(700px 220px at 8% 8%, rgba(255,219,88,0.16), transparent 52%), radial-gradient(560px 200px at 92% 14%, rgba(0,79,0,0.11), transparent 48%)",
-          }}
-        />
-        <p className="relative mb-6 max-w-3xl text-base leading-relaxed text-black/75">
-          Every season adds a new chapter to Team 1403. This timeline highlights the milestones that shaped our competitive
-          performance, outreach mission, and long-term team culture.
-        </p>
-        <div className="relative space-y-5">
-          {milestones.map((entry, index) => (
-            <motion.div
-              key={`${entry.year}-${entry.title}`}
-              initial={{ opacity: 0, x: -18, y: 10 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ amount: 0.2, once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="relative grid gap-5 rounded-[28px] border border-black/10 bg-white p-5 shadow-[0_18px_60px_-48px_rgba(0,0,0,0.7)] md:grid-cols-[140px_1fr] md:items-start md:p-6"
-            >
-              <div className="flex flex-row items-center justify-between gap-3 border-b border-black/10 pb-3 md:block md:border-b-0 md:pb-0">
-                <p className="inline-flex h-11 min-w-20 items-center justify-center rounded-full bg-black/90 px-4 text-sm font-semibold tracking-[0.08em] text-white">
-                  {entry.year}
-                </p>
-                <p className="inline-flex rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs uppercase tracking-[0.18em] text-black/65 md:mt-3">
-                  {entry.accent}
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl uppercase tracking-[0.14em] text-black md:text-2xl">{entry.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-black/75">{entry.description}</p>
-                <div className="mt-5 overflow-hidden rounded-2xl border border-black/10">
-                  <Image
-                    src={entry.image}
-                    alt={`${entry.title} milestone`}
-                    width={640}
-                    height={360}
-                    className={`h-52 w-full object-cover transition-all duration-300 md:h-64 ${shouldReduceMotion ? "" : "md:hover:scale-[1.02]"}`}
-                    style={{ objectPosition: entry.imagePosition ?? "center" }}
-                  />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const HistoryHero = () => (
-  <section className="relative overflow-hidden border-b border-black/10">
-    <div
-      className="absolute inset-0 opacity-55"
-      style={{
-        background:
-          "radial-gradient(1200px 420px at 6% 12%, rgba(255,219,88,0.22), transparent 34%), radial-gradient(800px 380px at 90% 20%, rgba(0,79,0,0.16), transparent 38%), linear-gradient(130deg, rgba(193,163,98,0.08), transparent)",
-      }}
-    />
-    <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-16 lg:flex-row lg:items-center lg:gap-12">
-      <div className="space-y-6">
-        <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.32em] text-black/60">
-          <span className="h-2 w-2 rounded-full bg-[#ffdb58]" aria-hidden />
-          Cougar Robotics
-        </p>
-        <h1 className="text-4xl uppercase tracking-[0.2em] text-black sm:text-5xl">History &amp; Awards</h1>
-        <p className="max-w-xl text-sm leading-relaxed text-black/75">
-          Explore how Team 1403 has grown from a local engineering club into a recognized, values-driven force in FIRST with
-          consistent district and championship recognition.
-        </p>
-        <p className="text-xs uppercase tracking-[0.24em] text-black/70">
-          Competitive excellence, impact leadership, and technical innovation since 2004.
-        </p>
-      </div>
-      <div className="relative h-[280px] w-full overflow-hidden rounded-[30px] border border-black/10 bg-white/85 shadow-[0_30px_90px_-60px_rgba(0,0,0,0.65)] md:h-[360px]">
-        <Image
-          src="/images/buildseason/Copy of IMG_3643.JPG"
-          alt="Team 1403 showcase"
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 46vw"
-          priority
-        />
-      </div>
-    </div>
-  </section>
-);
-
-const groupAwardsByYear = (awards: AwardEntry[]) =>
-  Object.entries(
-    awards.reduce<Record<string, AwardEntry[]>>((acc, award) => {
-      const key = String(award.year);
-      acc[key] = acc[key] ?? [];
-      acc[key].push(award);
-      return acc;
-    }, {})
-  )
-    .map(([year, items]) => ({ year: Number(year), items }))
-    .sort((a, b) => b.year - a.year);
+const statCards = [
+  { label: "Founded", value: "2004" },
+  { label: "Kickoff tradition", value: "Since 2007" },
+  { label: "Published awards", value: "2010-2024" },
+];
 
 const HistoryAwardsPage = () => {
-  const [selectedYear, setSelectedYear] = useState<string>("all");
-  const [selectedType, setSelectedType] = useState<string>("all");
-  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
-
-  const years = useMemo(() => {
-    const uniqueYears = Array.from(new Set(AWARDS.map((award) => award.year))).sort((a, b) => b - a);
-    return uniqueYears;
-  }, []);
-
-  const awardTypes = useMemo(
-    () => Array.from(new Set(AWARDS.map((award) => award.type))).sort((a, b) => a.localeCompare(b)),
-    []
-  );
-
-  const filteredAwards = useMemo(() => {
-    const selectedYearValue = selectedYear === "all" ? null : Number(selectedYear);
-    const filtered = AWARDS.filter((award) => {
-      const yearMatch = selectedYearValue === null || award.year === selectedYearValue;
-      const typeMatch = selectedType === "all" || award.type === selectedType;
-      return yearMatch && typeMatch;
-    });
-
-    return filtered.sort((a, b) =>
-      sortOrder === "newest"
-        ? b.year - a.year || a.title.localeCompare(b.title)
-        : a.year - b.year || b.title.localeCompare(a.title)
-    );
-  }, [selectedType, selectedYear, sortOrder]);
-
-  const awardRows = useMemo(() => {
-    const groups = groupAwardsByYear(filteredAwards);
-    if (sortOrder === "oldest") {
-      return groups.sort((a, b) => a.year - b.year);
-    }
-    return groups.sort((a, b) => b.year - a.year);
-  }, [filteredAwards, sortOrder]);
-
-  const featured = useMemo(
-    () => AWARDS.filter((award) => award.featured).slice(0, 4),
-    []
-  );
-
   return (
-    <main className="min-h-screen bg-white text-black">
-      <HistoryHero />
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-16">
-        <TeamTimeline milestones={TIMELINE_ENTRIES} />
-        <FeaturedAwards awards={featured} />
-        <section>
-          <div className="mb-6 flex items-center justify-between gap-3">
-            <h2 className="text-2xl uppercase tracking-[0.24em] text-black">Awards &amp; recognition</h2>
-            <p className="text-xs uppercase tracking-[0.24em] text-black/60">Competition and impact portfolio</p>
+    <main className="min-h-screen bg-[linear-gradient(180deg,#f8fbff_0%,#eef4ff_42%,#ffffff_100%)] text-slate-950">
+      <section className="border-b border-slate-200/80">
+        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+          <p className="text-xs uppercase tracking-[0.4em] text-slate-600">Team 1403 Archive</p>
+          <h1 className="mt-4 text-4xl uppercase tracking-[0.18em] text-slate-950 sm:text-5xl">
+            History &amp; Awards
+          </h1>
+          <p className="mt-6 max-w-4xl text-base leading-8 text-slate-800 sm:text-lg">
+            A chronological archive of Team 1403 from 2004 through 2026. Blue year banners organize each season,
+            award, and major milestone, while clearly marking the years where the public archive still needs older
+            photos or verified details from team records.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {statCards.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-3xl border border-slate-200/80 bg-white/85 p-6 shadow-[0_24px_70px_-54px_rgba(15,23,42,0.35)]"
+              >
+                <p className="text-xs uppercase tracking-[0.34em] text-slate-500">{stat.label}</p>
+                <p className="mt-3 text-2xl font-semibold text-slate-950">{stat.value}</p>
+              </div>
+            ))}
           </div>
-          <AwardsToolbar
-            years={years}
-            awardTypes={awardTypes}
-            selectedYear={selectedYear}
-            selectedType={selectedType}
-            sortOrder={sortOrder}
-            onYearChange={setSelectedYear}
-            onTypeChange={setSelectedType}
-            onSortChange={setSortOrder}
-          />
-          <section className="mt-6">
-            <AwardsGrid awardRows={awardRows} />
-          </section>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-14 sm:py-16">
+        <div className="space-y-8">
+          {teamHistory.map((entry) => (
+            <article
+              key={entry.year}
+              className="overflow-hidden rounded-[30px] border border-slate-200/80 bg-white/92 shadow-[0_26px_80px_-58px_rgba(15,23,42,0.38)]"
+            >
+              <div className="grid gap-0 lg:grid-cols-[220px_1fr]">
+                <div className="flex flex-col justify-between bg-[linear-gradient(180deg,#0f4c81_0%,#1d6fb8_100%)] p-6 text-white">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.38em] text-white/70">Season</p>
+                    <p className="mt-4 text-4xl font-semibold tracking-[0.08em]">{entry.year}</p>
+                  </div>
+                  <p className="mt-8 text-sm leading-6 text-white/85">{entry.title}</p>
+                </div>
+
+                <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+                  <div className="overflow-hidden rounded-[24px] border border-slate-200 bg-slate-50">
+                    {entry.image ? (
+                      <Image
+                        src={entry.image}
+                        alt={entry.imageAlt ?? `${entry.year} Team 1403 historical photo`}
+                        width={900}
+                        height={640}
+                        className="h-64 w-full object-cover sm:h-72"
+                      />
+                    ) : (
+                      <div className="flex h-64 items-center justify-center bg-[linear-gradient(180deg,#dbeafe_0%,#eff6ff_100%)] px-6 text-center text-sm leading-7 text-slate-700 sm:h-72">
+                        {entry.imageTodo}
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.34em] text-slate-500">Highlights</p>
+                    <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-slate-950 sm:text-3xl">
+                      {entry.title}
+                    </h2>
+                    <p className="mt-4 text-base leading-8 text-slate-800">{entry.summary}</p>
+                    {entry.imageTodo ? (
+                      <p className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm leading-7 text-slate-700">
+                        {entry.imageTodo}
+                      </p>
+                    ) : null}
+                    <ul className="mt-5 space-y-3">
+                      {entry.highlights.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-base leading-8 text-slate-800">
+                          <span className="mt-3 h-2.5 w-2.5 rounded-full bg-[#1d6fb8]" aria-hidden="true" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 };

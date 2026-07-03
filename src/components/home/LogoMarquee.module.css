@@ -1,5 +1,5 @@
 .marquee {
-  --marquee-duration: 22s;
+  --marquee-duration: 28s;
   position: relative;
   overflow: hidden;
 }

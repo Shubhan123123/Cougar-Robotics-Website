@@ -64,7 +64,7 @@ const News = () => {
                   <span className="block">{item.author}</span>
                   <span className="block">{item.date}</span>
                 </div>
-                <p className="text-sm leading-relaxed text-black/70">{item.excerpt}</p>
+                <p className="text-base leading-7 text-black/80">{item.excerpt}</p>
               </div>
             </article>
           ))}

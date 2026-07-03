@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import cougarWorkshopsImage from "../../../public/images/Cougar-Workshops.png";
 
+const smoothEase = [0.22, 1, 0.36, 1] as const;
+
 const sectionVariants = {
   hidden: { opacity: 0, y: 24 },
   show: {
@@ -11,7 +13,7 @@ const sectionVariants = {
     y: 0,
     transition: {
       duration: 0.55,
-      ease: [0.22, 1, 0.36, 1],
+      ease: smoothEase,
       when: "beforeChildren" as const,
       staggerChildren: 0.1,
     },
@@ -23,7 +25,7 @@ const imageVariants = {
   show: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.55, ease: smoothEase },
   },
 };
 
@@ -32,7 +34,7 @@ const textVariants = {
   show: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.1 },
+    transition: { duration: 0.55, ease: smoothEase, staggerChildren: 0.1 },
   },
 };
 
@@ -41,7 +43,7 @@ const itemVariants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.4, ease: smoothEase },
   },
 };
 
@@ -74,6 +76,12 @@ export default function CougarWorkshopsPage() {
           </motion.div>
 
           <motion.div variants={textVariants} className="order-2">
+            <motion.p
+              variants={itemVariants}
+              className="text-xs uppercase tracking-[0.35em] text-slate-600"
+            >
+              Workshops
+            </motion.p>
             <motion.h1
               variants={itemVariants}
               className="text-4xl font-bold tracking-[-0.02em] text-slate-950 sm:text-5xl"
@@ -82,7 +90,7 @@ export default function CougarWorkshopsPage() {
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="mt-6 max-w-4xl text-base leading-relaxed text-slate-700 sm:text-lg"
+              className="mt-6 max-w-4xl text-base leading-8 text-slate-800 sm:text-lg"
             >
               In 1403’s Cougar Workshops, children aged 9-12 worked together to make boats using items such as
               popsicle sticks and straws, challenging them to see which boat could stay afloat with the most pennies.

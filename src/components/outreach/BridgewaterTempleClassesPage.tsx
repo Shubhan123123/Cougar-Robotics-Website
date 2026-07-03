@@ -20,12 +20,12 @@ const stats = [
 
 const testimonials = [
   {
-    name: "Ranvir Singh",
+    name: "Ranvir",
     quote:
       "“All my mentees seemed to have lots of fun during the challenges. My favorite innovation project was one regarding a trash-cleaning robot; although their idea was seemingly basic, they added their own twists, such as a filtration system and the ability to sort through different types of waste. I was surprised by their ability to expand on a basic idea as the classes went on.”",
   },
   {
-    name: "Prabhav Pillarisetti",
+    name: "Prabhav",
     quote:
       "“The kids seemed to really enjoy the challenges […] some of the builds I remember were a functional streetlight, and a giant fan.”",
   },
@@ -169,7 +169,7 @@ const BridgewaterTempleClassesPage = () => {
               Bridgewater Temple Classes
             </h1>
             <div className="h-[2px] w-20 origin-left rounded-full bg-gradient-to-r from-[#C1A362] to-transparent" ref={underlineRef} />
-            <p className="max-w-2xl text-sm leading-relaxed text-black/70">
+            <p className="max-w-2xl text-base leading-8 text-black/80">
               In September 2024, Team 1403 led an outreach event at Sri Venkateswara Temple (Balaji Mandir) and Community Center in Bridgewater, NJ that centered around FIRST robotics-based classes.
             </p>
           </div>
@@ -225,7 +225,7 @@ const BridgewaterTempleClassesPage = () => {
                 style={{ transform: shouldReduceMotion ? "scaleY(0)" : undefined }}
               />
             </div>
-            <div className="space-y-8 text-sm leading-relaxed text-black/70">
+            <div className="space-y-8 text-base leading-8 text-black/80">
               <div data-story className="rounded-3xl border border-black/10 bg-white/80 p-6 shadow-[0_20px_70px_-60px_rgba(0,0,0,0.6)]">
                 <p className="text-xs uppercase tracking-[0.3em] text-black/60">Overview</p>
                 <p className="mt-4">
@@ -243,12 +243,11 @@ const BridgewaterTempleClassesPage = () => {
                 <p className="mt-4">
                   Student Testimonials:
                 </p>
-                <p className="mt-4">
-                  Ranvir Singh: “All my mentees seemed to have lots of fun during the challenges. My favorite innovation project was one regarding a trash-cleaning robot; although their idea was seemingly basic, they added their own twists, such as a filtration system and the ability to sort through different types of waste. I was surprised by their ability to expand on a basic idea as the classes went on.”
-                </p>
-                <p className="mt-4">
-                  Prabhav Pillarisetti: “The kids seemed to really enjoy the challenges […] some of the builds I remember were a functional streetlight, and a giant fan.”
-                </p>
+                {testimonials.map((testimonial) => (
+                  <p key={testimonial.name} className="mt-4">
+                    {testimonial.name}: {testimonial.quote}
+                  </p>
+                ))}
               </div>
               <div data-story className="rounded-3xl border border-black/10 bg-white/80 p-6 shadow-[0_20px_70px_-60px_rgba(0,0,0,0.6)]">
                 <p className="text-xs uppercase tracking-[0.3em] text-black/60">Closing Reflection</p>

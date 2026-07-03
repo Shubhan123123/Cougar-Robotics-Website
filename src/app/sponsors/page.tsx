@@ -29,7 +29,7 @@ export default function SponsorsPage() {
             </Button>
           </div>
         </div>
-        <p data-reveal className="mb-10 max-w-3xl text-sm leading-relaxed text-black/70">
+        <p data-reveal className="mb-10 max-w-3xl text-base leading-8 text-black/80">
           Our sponsors make it possible for students to prototype, iterate, and compete at the highest level.
           We are grateful for the organizations and community partners who invest in STEM access.
         </p>
@@ -38,14 +38,14 @@ export default function SponsorsPage() {
             <div
               key={sponsor.name}
               data-batch
-              className="flex items-center justify-center rounded-3xl border border-black/10 bg-white/80 p-6 shadow-[0_20px_70px_-60px_rgba(0,0,0,0.6)]"
+              className="flex min-h-[180px] items-center justify-center rounded-3xl border border-black/10 bg-white/80 p-8 shadow-[0_20px_70px_-60px_rgba(0,0,0,0.6)] sm:min-h-[210px] lg:min-h-[230px]"
             >
               <Image
                 src={sponsor.src}
                 alt={`${sponsor.name} logo`}
-                width={240}
-                height={120}
-                className="h-16 w-auto object-contain"
+                width={320}
+                height={160}
+                className="h-20 w-auto max-w-full object-contain sm:h-24 lg:h-28"
               />
             </div>
           ))}
