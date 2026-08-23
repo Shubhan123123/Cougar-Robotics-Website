@@ -15,16 +15,6 @@ const iconMap = {
   "X-twitter": Twitter,
 };
 
-const districtEventArchiveTodo = {
-  title: "District Event Archive",
-  note: "TODO for Mr. Leicht: add the verified list of district event years and milestone notes for this page.",
-  fields: [
-    "Montgomery District Event active years",
-    "Home event transitions from Monty Madness to district format",
-    "Any years that should be marked as paused, renamed, or reformatted",
-  ],
-};
-
 export default function ContactPage() {
   const sectionRef = useRef<HTMLElement>(null);
   useScrollEffects(sectionRef, { triggerId: "contact-page" });
@@ -83,22 +73,6 @@ export default function ContactPage() {
               className="h-80 w-full object-cover"
             />
           </div>
-        </div>
-
-        <div
-          data-reveal
-          className="mt-10 rounded-[28px] border border-dashed border-black/20 bg-slate-50/90 p-6 shadow-[0_16px_50px_-40px_rgba(15,23,42,0.35)]"
-        >
-          <p className="text-xs uppercase tracking-[0.35em] text-black/55">{districtEventArchiveTodo.title}</p>
-          <p className="mt-4 text-base leading-8 text-black/80">{districtEventArchiveTodo.note}</p>
-          <ul className="mt-4 space-y-2 text-sm leading-7 text-black/70">
-            {districtEventArchiveTodo.fields.map((field) => (
-              <li key={field} className="flex items-start gap-3">
-                <span className="mt-2 h-2 w-2 rounded-full bg-[#1d6fb8]" aria-hidden="true" />
-                <span>{field}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </main>

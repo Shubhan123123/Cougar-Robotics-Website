@@ -46,7 +46,6 @@ const itemVariants = {
     transition: { duration: 0.4, ease: smoothEase },
   },
 };
-
 export default function CougarWorkshopsPage() {
   return (
     <section className="relative isolate flex min-h-screen items-center overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(15,23,42,0.06),transparent_45%),linear-gradient(180deg,#f8fafc_0%,#eef2ff_100%)] py-12 sm:py-16 lg:py-20">

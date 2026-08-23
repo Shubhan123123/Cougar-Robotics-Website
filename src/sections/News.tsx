@@ -1,76 +1,50 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { newsContent } from "@/lib/content";
-import { useScrollEffects } from "@/components/motion/useScrollEffects";
-import Button from "@/components/ui/Button";
+import { SectionHeader, SectionShell, StaggerGroup, StaggerItem } from "@/components/motion/primitives";
 
 const News = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  // Batched ScrollTrigger animation for the horizontal news cards.
-  useScrollEffects(sectionRef, { triggerId: "news", batchSelector: "[data-batch]" });
-
-  const scrollByAmount = (amount: number) => {
-    scrollerRef.current?.scrollBy({ left: amount, behavior: "smooth" });
-  };
-
   return (
-    <section ref={sectionRef} className="border-y border-black/10 bg-transparent">
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        <div className="flex flex-wrap items-center justify-between gap-6">
-          <h1 data-reveal className="text-3xl uppercase tracking-[0.3em] text-black">
-            {newsContent.title}
-          </h1>
-          <div className="flex items-center gap-3">
-            <Button type="button" size="icon" aria-label="Previous" onClick={() => scrollByAmount(-320)}>
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <Button type="button" size="icon" aria-label="Next" onClick={() => scrollByAmount(320)}>
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-        <div
-          ref={scrollerRef}
-          className="mt-10 flex gap-6 overflow-x-auto pb-6 scrollbar-none"
-        >
-          {newsContent.items.map((item) => (
-            <article
-              key={item.title}
-              data-batch
-              className="min-w-[260px] flex-1 rounded-3xl border border-black/10 bg-white p-6 shadow-[0_20px_80px_-60px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-2 hover:border-black/30 sm:min-w-[320px]"
-            >
-              <div className="flex flex-col gap-4">
-                <div className="overflow-hidden rounded-2xl border border-black/10">
+    <SectionShell className="border-b border-slate-900/8">
+      <div className="grid gap-12">
+        <SectionHeader
+          eyebrow="Outreach and Updates"
+          title={newsContent.title}
+          body="Recent newsletters and event coverage show how the team communicates build season progress, outreach milestones, and competition activity."
+        />
+        <StaggerGroup className="grid gap-6 lg:grid-cols-3">
+          {newsContent.items.slice(0, 3).map((item) => (
+            <StaggerItem key={item.title}>
+              <article className="group grid h-full gap-4 rounded-[1.8rem] border border-slate-900/8 bg-white/84 p-5 shadow-[0_24px_52px_-42px_rgba(15,23,42,0.18)]">
+                <div className="overflow-hidden rounded-[1.2rem]">
                   <Image
                     src={item.image}
                     alt={`${item.title} cover`}
-                    width={420}
-                    height={260}
-                    className="h-32 w-full object-cover"
+                    width={640}
+                    height={420}
+                    className="h-48 w-full object-cover transition duration-300 group-hover:scale-[1.03]"
                   />
+                </div>
+                <div className="text-[0.68rem] uppercase tracking-[0.28em] text-slate-500">
+                  <span>{item.author}</span>
+                  <span className="mx-2 text-slate-300">/</span>
+                  <span>{item.date}</span>
                 </div>
                 <Link
                   href={item.href}
-                  className="text-base font-semibold uppercase tracking-[0.2em] text-black hover:text-[#004f00]"
+                  className="text-xl font-semibold uppercase tracking-[0.08em] text-slate-950 transition-colors hover:text-[#8d6a16]"
                 >
                   {item.title}
                 </Link>
-                <div className="text-xs uppercase tracking-[0.3em] text-black/50">
-                  <span className="block">{item.author}</span>
-                  <span className="block">{item.date}</span>
-                </div>
-                <p className="text-base leading-7 text-black/80">{item.excerpt}</p>
-              </div>
-            </article>
+                <p className="text-sm leading-7 text-slate-700">{item.excerpt}</p>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
-    </section>
+    </SectionShell>
   );
 };
 

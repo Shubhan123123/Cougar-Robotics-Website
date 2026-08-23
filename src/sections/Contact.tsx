@@ -5,11 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { contactContent, socialLinks } from "@/lib/content";
 import Button from "@/components/ui/Button";
-import { useScrollEffects } from "@/components/motion/useScrollEffects";
-import { useRef } from "react";
-import styles from "@/components/home/FlowingCTA.module.css";
-import { useReducedMotion } from "framer-motion";
-import { useDevFlags } from "@/lib/SafeDevContext";
+import { Reveal, SectionShell } from "@/components/motion/primitives";
 
 const iconMap = {
   Instagram: Instagram,
@@ -19,48 +15,44 @@ const iconMap = {
 };
 
 const Contact = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const shouldReduceMotion = useReducedMotion();
-  const { enableMotion } = useDevFlags();
-  const allowMotion = enableMotion && !shouldReduceMotion;
-  // Subtle reveal timeline for contact details and supporting media.
-  useScrollEffects(sectionRef, { triggerId: "contact" });
-
   return (
-    <section ref={sectionRef} className="section-blobs mx-auto max-w-6xl px-6 py-20">
-      <div
-        className={`${styles.cta} ${allowMotion ? styles.ctaAnimated : ""} grid gap-8 rounded-[36px] border border-black/10 p-8 shadow-[0_30px_90px_-70px_rgba(0,0,0,0.65)] md:grid-cols-[1.2fr_0.8fr]`}
-      >
-        <div className="space-y-6">
-          <p data-reveal className="max-w-2xl text-base leading-8 text-black/80">
-            Reach out for sponsorships, outreach collaborations, student opportunities, or event partnerships.
-          </p>
-          <h2 data-reveal className="text-xl uppercase tracking-[0.3em] text-black">
-            {contactContent.email}
-          </h2>
-          <h2 data-reveal className="text-xl uppercase tracking-[0.3em] text-black">
-            {contactContent.address}
-          </h2>
-          <h2 data-reveal className="text-xl uppercase tracking-[0.3em] text-black">
-            {contactContent.phone}
-          </h2>
-          <div data-reveal>
-            <Button asChild>
+    <SectionShell className="border-b border-slate-900/8">
+      <div className="grid gap-10 rounded-[2rem] border border-slate-900/8 bg-[#0f172a] p-8 text-white shadow-[0_30px_80px_-46px_rgba(15,23,42,0.48)] md:grid-cols-[1.1fr_0.9fr] md:p-10">
+        <div className="space-y-8">
+          <Reveal className="max-w-3xl">
+            <p className="text-[0.72rem] uppercase tracking-[0.34em] text-white/52">Contact</p>
+            <h2 className="mt-4 text-3xl font-semibold uppercase tracking-[0.12em] text-white sm:text-4xl">
+              Build with Team 1403.
+            </h2>
+            <p className="mt-4 text-base leading-8 text-white/70">
+              Reach out for sponsorships, outreach collaborations, student opportunities, or event partnerships.
+            </p>
+          </Reveal>
+          <Reveal className="grid gap-4">
+            <p className="text-sm uppercase tracking-[0.3em] text-white/62">{contactContent.email}</p>
+            <p className="text-sm uppercase tracking-[0.3em] text-white/62">{contactContent.address}</p>
+            <p className="text-sm uppercase tracking-[0.3em] text-white/62">{contactContent.phone}</p>
+          </Reveal>
+          <Reveal className="flex flex-wrap gap-3">
+            <Button asChild className="border-white/20 bg-white text-slate-950">
               <Link href="/contact">Contact Us</Link>
             </Button>
-          </div>
+            <Button asChild className="border-white/20 bg-white/8 text-white hover:text-slate-950">
+              <Link href="/sponsors">Sponsor the Team</Link>
+            </Button>
+          </Reveal>
         </div>
-        <div className="flex flex-col justify-between gap-6">
-          <div data-reveal className="overflow-hidden rounded-3xl border border-black/10 bg-white/70">
+        <div className="grid gap-6">
+          <Reveal className="overflow-hidden rounded-[1.6rem] border border-white/10">
             <Image
               src="/images/buildseason/Copy%20of%20IMG_9369.JPG"
               alt="Students collaborating during build season"
-              width={460}
-              height={320}
-              className="h-40 w-full object-cover"
+              width={640}
+              height={460}
+              className="h-56 w-full object-cover"
             />
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
+          </Reveal>
+          <Reveal className="flex flex-wrap items-center gap-3">
             {socialLinks.map((link) => {
               const Icon = iconMap[link.label as keyof typeof iconMap];
               return (
@@ -68,17 +60,17 @@ const Contact = () => {
                   key={link.label}
                   href={link.href}
                   aria-label={link.label}
-                  className="group flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white text-black transition hover:-translate-y-1 hover:border-black/40 hover:bg-[#FFDB58]"
+                  className="group flex h-12 w-12 items-center justify-center rounded-full border border-white/14 bg-white/6 text-white transition hover:border-[#c79b2c]/55 hover:bg-[#c79b2c] hover:text-slate-950"
                 >
-                  <Icon className="h-5 w-5 transition group-hover:scale-110" />
+                  <Icon className="h-5 w-5 transition group-hover:scale-105" />
                   <span className="sr-only">{link.label}</span>
                 </a>
               );
             })}
-          </div>
+          </Reveal>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 };
 

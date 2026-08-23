@@ -1,54 +1,62 @@
 "use client";
 
 import { useRef } from "react";
-import { useScrollEffects } from "@/components/motion/useScrollEffects";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { Reveal, SectionHeader, SectionShell, StaggerGroup, StaggerItem } from "@/components/motion/primitives";
 
-const highlights = [
-  { label: "Years Running", value: "20+", detail: "STEM impact since 2004." },
-  { label: "Awards Earned", value: "60+", detail: "Engineering and outreach honors." },
-  { label: "Students Led", value: "70+", detail: "Leadership across sub-teams." },
+const processSteps = [
+  { label: "Build", detail: "Prototype, CAD, machine, wire, and iterate under real deadlines." },
+  { label: "Test", detail: "Validate mechanisms, automate routines, and stress every system." },
+  { label: "Compete", detail: "Deliver under pressure while representing Team 1403 with discipline." },
 ];
 
 const HighlightsStrip = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  // One-time reveal keeps the strip feeling light and avoids scroll jitter.
-  useScrollEffects(sectionRef, { triggerId: "highlights", batchSelector: "[data-batch]" });
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const beamScale = useTransform(scrollYProgress, [0.2, 0.9], [0.1, 1]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative mt-0 pt-0 border-b border-black/10 bg-transparent"
-    >
-      <div className="mx-auto max-w-6xl px-6 py-14 pt-6">
-        <div className="flex flex-wrap items-center justify-between gap-6">
-          <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-black/60">Highlights</p>
-            <h2 data-reveal className="text-3xl uppercase tracking-[0.25em] text-black">
-              Impact at a Glance
-            </h2>
-          </div>
-          <p className="max-w-md text-sm leading-relaxed text-black/70">
-            Student-led engineering, mentor-guided growth, and outreach that scales each season.
-          </p>
-        </div>
+    <SectionShell ref={sectionRef} className="border-b border-slate-900/8 pt-14 sm:pt-16">
+      <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+        <SectionHeader
+          eyebrow="Engineering Process"
+          title="Build. Test. Compete."
+          body="A competition robot only works when design, fabrication, controls, and iteration move as one system."
+        />
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {highlights.map((item) => (
-            <div
-              key={item.label}
-              data-batch
-              className="rounded-3xl border border-black/10 bg-white/70 p-6 shadow-[0_24px_60px_-50px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:-translate-y-1"
-            >
-              <p className="text-xs uppercase tracking-[0.3em] text-black/50">{item.label}</p>
-              <p className="mt-2 text-3xl font-semibold uppercase tracking-[0.18em] text-black">
-                {item.value}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-black/70">{item.detail}</p>
-            </div>
-          ))}
+        <div className="relative">
+          <motion.div
+            aria-hidden="true"
+            className="absolute left-3 top-3 hidden h-[calc(100%-24px)] w-px origin-top bg-[linear-gradient(180deg,#c79b2c_0%,#0f172a_100%)] lg:block"
+            style={reduceMotion ? undefined : { scaleY: beamScale }}
+          />
+          <StaggerGroup className="grid gap-6">
+            {processSteps.map((step, index) => (
+              <StaggerItem key={step.label}>
+                <article className="rounded-[1.8rem] border border-slate-900/8 bg-white/82 p-6 shadow-[0_24px_50px_-40px_rgba(15,23,42,0.18)]">
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#c79b2c]/35 bg-[#fff7de] text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#8d6a16]">
+                      0{index + 1}
+                    </div>
+                    <div>
+                      <p className="text-[0.72rem] uppercase tracking-[0.28em] text-slate-500">Phase</p>
+                      <h3 className="mt-2 text-2xl font-semibold uppercase tracking-[0.12em] text-slate-950">
+                        {step.label}
+                      </h3>
+                      <p className="mt-3 max-w-xl text-sm leading-7 text-slate-700">{step.detail}</p>
+                    </div>
+                  </div>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 };
 

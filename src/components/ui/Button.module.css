@@ -1,27 +1,36 @@
 .button {
-  --button-color: rgb(193, 163, 98);
-  --button-glow: rgba(193, 163, 98, 0.4);
+  --button-color: #0f172a;
+  --button-fill: #0f172a;
+  --button-text-hover: #f8fafc;
   cursor: pointer;
   position: relative;
-  padding: 10px 24px;
-  font-size: 18px;
+  padding: 11px 22px;
+  font-size: 14px;
   color: var(--button-color);
-  border: 2px solid var(--button-color);
-  border-radius: 34px;
-  background-color: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.88);
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    transform 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   z-index: 0;
+  box-shadow: 0 18px 40px -32px rgba(15, 23, 42, 0.34);
 }
 
 .button[data-size="sm"] {
-  padding: 8px 18px;
-  font-size: 12px;
+  padding: 8px 16px;
+  font-size: 11px;
 }
 
 .button[data-size="icon"] {
@@ -40,33 +49,34 @@
   content: "";
   position: absolute;
   inset: 0;
-  margin: auto;
-  width: 50px;
-  height: 50px;
   border-radius: inherit;
-  transform: scale(0);
+  transform: scaleX(0);
+  transform-origin: left center;
   z-index: -1;
-  background-color: var(--button-color);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  background-color: var(--button-fill);
+  transition: transform 240ms ease;
 }
 
 .button:hover::before {
-  transform: scale(3);
+  transform: scaleX(1);
 }
 
 .button:hover {
-  color: #212121;
-  transform: scale(1.1);
-  box-shadow: 0 0px 20px var(--button-glow);
+  color: var(--button-text-hover);
+  transform: translateY(-1px);
+  border-color: rgba(15, 23, 42, 0.32);
+  box-shadow: 0 20px 40px -28px rgba(15, 23, 42, 0.38);
 }
 
 .button:active {
-  transform: scale(1);
+  transform: translateY(0) scale(0.985);
 }
 
 .button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(193, 163, 98, 0.45);
+  box-shadow:
+    0 0 0 3px rgba(199, 155, 44, 0.35),
+    0 18px 40px -32px rgba(15, 23, 42, 0.34);
 }
 
 .button > * {

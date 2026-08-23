@@ -2,50 +2,34 @@ import Link from "next/link";
 
 type DocumentationYear = {
   year: number;
+  href?: string;
   note?: string;
-  documents: Array<{ label: string; href: string }>;
 };
 
 const documentationYears: DocumentationYear[] = [
   {
     year: 2025,
-    documents: [
-      { label: "Impact Essay", href: "/impact-documentation/2025-impact-essay" },
-      { label: "Executive Summary", href: "/impact-documentation/2025-impact-executive-summary" },
-    ],
+    href: "/impact-documentation/2025-impact-documentation",
   },
   {
     year: 2024,
     note: "TODO: add the 2024 Impact Essay and Executive Summary routes once the final files are available locally.",
-    documents: [],
   },
   {
     year: 2023,
-    documents: [
-      { label: "Impact Essay", href: "/impact/2023-impact-essay" },
-      { label: "Executive Summary", href: "/impact/2023-impact-executive-summary" },
-    ],
+    href: "/impact-documentation/2023-impact-documentation",
   },
   {
     year: 2022,
-    documents: [
-      { label: "Impact Essay", href: "/impact-documentation/2022-impact-essay" },
-      { label: "Executive Summary", href: "/impact-documentation/2022-impact-executive-summary" },
-    ],
+    href: "/impact-documentation/2022-impact-documentation",
   },
   {
     year: 2021,
-    documents: [
-      { label: "Impact Essay", href: "/impact-documentation/2021-impact-essay" },
-      { label: "Executive Summary", href: "/impact-documentation/2021-impact-executive-summary" },
-    ],
+    href: "/impact-documentation/2021-impact-documentation",
   },
   {
     year: 2020,
-    documents: [
-      { label: "Impact Essay", href: "/impact-documentation/2020-impact-essay" },
-      { label: "Executive Summary", href: "/impact-documentation/2020-impact-executive-summary" },
-    ],
+    href: "/impact-documentation/2020-impact-documentation",
   },
 ];
 
@@ -80,24 +64,20 @@ export default function ImpactDocumentationIndexPage() {
                 </div>
 
                 <div className="p-6 sm:p-8">
-                  {entry.documents.length ? (
-                    <div className="grid gap-5 md:grid-cols-2">
-                      {entry.documents.map((document) => (
-                        <section
-                          key={document.label}
-                          className="rounded-3xl border border-slate-200/80 bg-slate-50/75 p-5"
-                        >
-                          <p className="text-xs uppercase tracking-[0.3em] text-slate-500">{entry.year}</p>
-                          <h3 className="mt-3 text-xl font-semibold text-slate-950">{document.label}</h3>
-                          <Link
-                            href={document.href}
-                            className="mt-5 inline-flex rounded-full border border-[#1d6fb8]/20 bg-white px-4 py-2 text-sm font-medium text-[#0f4c81] transition hover:border-[#1d6fb8]/40 hover:bg-[#eff6ff]"
-                          >
-                            Open {document.label}
-                          </Link>
-                        </section>
-                      ))}
-                    </div>
+                  {entry.href ? (
+                    <section className="rounded-3xl border border-slate-200/80 bg-slate-50/75 p-5">
+                      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">{entry.year}</p>
+                      <h3 className="mt-3 text-xl font-semibold text-slate-950">{entry.year} Impact Documentation</h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-700">
+                        View the full essay and executive summary together on one page.
+                      </p>
+                      <Link
+                        href={entry.href}
+                        className="mt-5 inline-flex rounded-full border border-[#1d6fb8]/20 bg-white px-4 py-2 text-sm font-medium text-[#0f4c81] transition hover:border-[#1d6fb8]/40 hover:bg-[#eff6ff]"
+                      >
+                        Open {entry.year} Impact Documentation
+                      </Link>
+                    </section>
                   ) : null}
 
                   {entry.note ? (

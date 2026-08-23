@@ -1,1 +1,5 @@
-export { default } from "@/app/impact-documentation/2021-impact-executive-summary/page";
+import { redirect } from "next/navigation";
+
+export default function ImpactExecutiveSummary2021LegacyRedirectPage() {
+  redirect("/impact-documentation/2021-impact-documentation");
+}

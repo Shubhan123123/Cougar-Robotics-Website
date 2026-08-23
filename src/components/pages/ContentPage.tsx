@@ -28,11 +28,17 @@ const GenericContentPage = ({ content, slug }: ContentPageProps) => {
   const chapterRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLElement>(null);
   const hasGrid = Boolean(content.stats?.length || content.sections?.length);
+  const showHeroImageTodo = slug === "parents/information" || slug === "parents/newsletters";
 
   // Primary reveal timeline for page hero.
   useScrollEffects(heroRef, { triggerId: `${slug}-hero` });
-  // Pinned chapter section for a narrative pause on long-form pages.
-  useScrollEffects(chapterRef, { triggerId: `${slug}-chapter`, pin: true, start: "top top", end: "+=120%" });
+  // Keep the chapter pinned only on long-form pages so short pages do not end with extra scroll space.
+  useScrollEffects(chapterRef, {
+    triggerId: `${slug}-chapter`,
+    pin: hasGrid,
+    start: "top top",
+    end: "+=120%",
+  });
   // Batched grid reveals for stats and supporting sections.
   useScrollEffects(gridRef, { triggerId: `${slug}-grid`, batchSelector: "[data-batch]" });
 
@@ -62,14 +68,26 @@ const GenericContentPage = ({ content, slug }: ContentPageProps) => {
               </Button>
             </div>
           </div>
-          <div data-reveal className="overflow-hidden rounded-[32px] border border-black/10 bg-white/70">
-            <Image
-              src={content.image}
-              alt={`${content.title} highlight`}
-              width={620}
-              height={440}
-              className="h-72 w-full object-cover sm:h-96"
-            />
+          <div
+            data-reveal
+            className="flex h-72 items-center justify-center overflow-hidden rounded-[32px] border border-black/10 bg-white/70 p-8 text-center sm:h-96"
+          >
+            {showHeroImageTodo ? (
+              <div className="max-w-md space-y-4 rounded-3xl border border-dashed border-black/20 bg-[#f7f8f2] p-6">
+                <p className="text-xs uppercase tracking-[0.35em] text-black/55">Todo</p>
+                <p className="text-lg uppercase tracking-[0.18em] text-black/75">
+                  Replace with a team photo from competition or outreach.
+                </p>
+              </div>
+            ) : (
+              <Image
+                src={content.image}
+                alt={`${content.title} highlight`}
+                width={620}
+                height={440}
+                className="h-full w-full object-cover"
+              />
+            )}
           </div>
         </div>
       </section>

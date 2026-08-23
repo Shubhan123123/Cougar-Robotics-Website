@@ -286,7 +286,10 @@ const HistoryAwardsPage = () => {
 
       <section className="mx-auto max-w-6xl px-6 py-14 sm:py-16">
         <div className="space-y-8">
-          {teamHistory.map((entry) => (
+          {teamHistory.map((entry) => {
+            const usesBannerLayout = entry.image?.includes("/images/awards/");
+
+            return (
             <article
               key={entry.year}
               className="overflow-hidden rounded-[30px] border border-slate-200/80 bg-white/92 shadow-[0_26px_80px_-58px_rgba(15,23,42,0.38)]"
@@ -301,14 +304,24 @@ const HistoryAwardsPage = () => {
                 </div>
 
                 <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-                  <div className="overflow-hidden rounded-[24px] border border-slate-200 bg-slate-50">
+                  <div
+                    className={`overflow-hidden rounded-[24px] border border-slate-200 ${
+                      usesBannerLayout
+                        ? "flex items-center justify-center bg-[linear-gradient(180deg,#eff6ff_0%,#ffffff_100%)] p-4"
+                        : "bg-slate-50"
+                    }`}
+                  >
                     {entry.image ? (
                       <Image
                         src={entry.image}
                         alt={entry.imageAlt ?? `${entry.year} Team 1403 historical photo`}
                         width={900}
                         height={640}
-                        className="h-64 w-full object-cover sm:h-72"
+                        className={
+                          usesBannerLayout
+                            ? "h-80 w-full object-contain sm:h-96"
+                            : "h-64 w-full object-cover sm:h-72"
+                        }
                       />
                     ) : (
                       <div className="flex h-64 items-center justify-center bg-[linear-gradient(180deg,#dbeafe_0%,#eff6ff_100%)] px-6 text-center text-sm leading-7 text-slate-700 sm:h-72">
@@ -331,7 +344,10 @@ const HistoryAwardsPage = () => {
                     <ul className="mt-5 space-y-3">
                       {entry.highlights.map((item) => (
                         <li key={item} className="flex items-start gap-3 text-base leading-8 text-slate-800">
-                          <span className="mt-3 h-2.5 w-2.5 rounded-full bg-[#1d6fb8]" aria-hidden="true" />
+                          <span
+                            className="mt-[0.95rem] block h-2.5 w-2.5 shrink-0 rounded-full bg-[#1d6fb8]"
+                            aria-hidden="true"
+                          />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -340,7 +356,8 @@ const HistoryAwardsPage = () => {
                 </div>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       </section>
     </main>

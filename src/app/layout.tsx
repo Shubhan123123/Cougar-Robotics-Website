@@ -42,12 +42,21 @@ export default function RootLayout({
       <body className={`${spaceGrotesk.variable} ${plexSans.variable} antialiased`}>
         <div className="relative min-h-screen overflow-x-hidden bg-background">
           <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
-            <div className="absolute inset-0 bg-background" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,#f4f7fb_0%,#eef2f7_52%,#f9fbfd_100%)]" />
             <div
-              className="absolute inset-0 opacity-[0.07]"
+              className="absolute inset-0 opacity-[0.08]"
               style={{
                 background:
-                  "radial-gradient(900px circle at 20% 10%, rgba(255,255,255,0.10), transparent 55%)",
+                  "radial-gradient(720px circle at 12% 8%, rgba(199,155,44,0.10), transparent 52%), radial-gradient(840px circle at 88% 16%, rgba(15,23,42,0.06), transparent 60%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 opacity-[0.05]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(15,23,42,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.16) 1px, transparent 1px)",
+                backgroundSize: "120px 120px",
+                maskImage: "linear-gradient(180deg, rgba(0,0,0,0.22), transparent 60%)",
               }}
             />
           </div>

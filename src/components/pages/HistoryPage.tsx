@@ -8,7 +8,6 @@ type OutreachHistoryEvent = {
   summary: string[];
   image: string;
   imageAlt: string;
-  note?: string;
 };
 
 const outreachHistoryEvents: OutreachHistoryEvent[] = [
@@ -51,7 +50,6 @@ const outreachHistoryEvents: OutreachHistoryEvent[] = [
     ],
     image: "/images/History2.jpg",
     imageAlt: "Go Baby Go workshop archive photo",
-    note: "TODO: Mr. Leicht/team archives should confirm the exact workshop date.",
   },
 ];
 
@@ -100,11 +98,6 @@ export default function HistoryPage() {
                       </p>
                     ))}
                   </div>
-                  {event.note ? (
-                    <p className="mt-5 rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm leading-7 text-slate-700">
-                      {event.note}
-                    </p>
-                  ) : null}
                 </div>
               </div>
             </article>
