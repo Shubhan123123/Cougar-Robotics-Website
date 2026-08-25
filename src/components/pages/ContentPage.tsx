@@ -28,7 +28,10 @@ const GenericContentPage = ({ content, slug }: ContentPageProps) => {
   const chapterRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLElement>(null);
   const hasGrid = Boolean(content.stats?.length || content.sections?.length);
-  const showHeroImageTodo = slug === "parents/information" || slug === "parents/newsletters";
+  const showHeroImageTodo =
+    slug === "parents/information" ||
+    slug === "parents/newsletters" ||
+    slug === "events/montgomery-district";
 
   // Primary reveal timeline for page hero.
   useScrollEffects(heroRef, { triggerId: `${slug}-hero` });
@@ -76,7 +79,7 @@ const GenericContentPage = ({ content, slug }: ContentPageProps) => {
               <div className="max-w-md space-y-4 rounded-3xl border border-dashed border-black/20 bg-[#f7f8f2] p-6">
                 <p className="text-xs uppercase tracking-[0.35em] text-black/55">Todo</p>
                 <p className="text-lg uppercase tracking-[0.18em] text-black/75">
-                  Replace with a team photo from competition or outreach.
+                  find a image
                 </p>
               </div>
             ) : (

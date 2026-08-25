@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
@@ -38,8 +38,12 @@ export default function RootLayout({
       lang="en"
       data-safe-dev={devFlags.safeDev ? "true" : "false"}
       data-enable-glass={devFlags.enableGlass ? "true" : "false"}
+      suppressHydrationWarning
     >
-      <body className={`${spaceGrotesk.variable} ${plexSans.variable} antialiased`}>
+      <body
+        className={`${spaceGrotesk.variable} ${plexSans.variable} antialiased`}
+        suppressHydrationWarning
+      >
         <div className="relative min-h-screen overflow-x-hidden bg-background">
           <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
             <div className="absolute inset-0 bg-[linear-gradient(180deg,#f4f7fb_0%,#eef2f7_52%,#f9fbfd_100%)]" />
